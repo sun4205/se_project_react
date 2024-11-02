@@ -8,6 +8,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+}
+
+.modal__opened {
+  visibility: visible;
 }
 
 .modal__close {
@@ -77,7 +82,7 @@
 }
 
 .modal__radio_input {
-  margin-bottom: 8px;
+  
   margin-right: 8px;
 }
 
