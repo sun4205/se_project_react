@@ -48,7 +48,7 @@
   line-height: 20px;
 }
 
-.modal__label_type_radio{
+.modal__label_type_radio {
   display: flex;
   align-items: center;
 }
@@ -65,7 +65,7 @@
   margin-top: 8px;
   margin-bottom: 24px;
   width: 100%;
-  padding-left: 0px 
+  padding-left: 0px;
 }
 
 .modal__radio-btns {
@@ -79,7 +79,6 @@
 .modal__radio_input {
   margin-bottom: 8px;
   margin-right: 8px;
-  
 }
 
 .modal__legend {
