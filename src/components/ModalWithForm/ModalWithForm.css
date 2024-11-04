@@ -73,6 +73,10 @@
   padding-left: 0px;
 }
 
+.modal__input:focus {
+  color: #000000;
+}
+
 .modal__radio-btns {
   border: none;
   padding: 0;
@@ -83,6 +87,14 @@
 
 .modal__radio_input {
   margin-right: 8px;
+}
+
+.modal__radio_input:checked + .modal__label {
+  color: #000000;
+}
+
+.modal__radio_input:checked {
+  accent-color: #000000;
 }
 
 .modal__legend {
@@ -104,4 +116,8 @@
   border: none;
   border-radius: 5px;
   margin-top: 32px;
+}
+
+.modal__submit:hover {
+  background-color: rgba(0, 0, 0, 0.6);
 }

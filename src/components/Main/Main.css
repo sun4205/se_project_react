@@ -1,5 +1,13 @@
+.main {
+  margin: 0 auto;
+  flex-grow: 1;
+  width: 100%; 
+  box-sizing: border-box;
+}
+
 .cards {
   margin-top: 40px;
+  width: 100%;
 }
 
 .cards__text {
@@ -9,12 +17,12 @@
   margin: 0 !important;
 }
 
-.cards__list{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    gap:21px;
-    margin-top: 34px;
+.cards__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  gap: 21px;
+  margin-top: 34px;
 }

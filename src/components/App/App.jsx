@@ -6,6 +6,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { coordinates, APIkey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import Footer from "../Footer/Footer";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -66,7 +67,7 @@ function App() {
           <input
             type="text"
             className="modal__input"
-            id="IamgeUrl"
+            id="ImageUrl"
             placeholder="Image URL"
           />
         </label>
@@ -74,21 +75,21 @@ function App() {
         <fieldset className="modal__radio-btns">
           <legend className="modal__legend">Select the weather type:</legend>
           <label htmlFor="hot" className="modal__label modal__label_type_radio">
-            <input id="cold" type="radio" className="modal__radio_input" />
+            <input id="hot" type="radio" className="modal__radio_input" name="weather" />
             Hot
           </label>
           <label
             htmlFor="warm"
             className="modal__label modal__label_type_radio"
           >
-            <input id="cold" type="radio" className="modal__radio_input" />
+            <input id="warm" type="radio" className="modal__radio_input" name="weather"  />
             Warm
           </label>
           <label
             htmlFor="cold"
             className="modal__label modal__label_type_radio"
           >
-            <input id="cold" type="radio" className="modal__radio_input" />
+            <input id="cold" type="radio" className="modal__radio_input" name="weather" />
             Cold
           </label>
         </fieldset>
@@ -98,6 +99,7 @@ function App() {
         card={selectedCard}
         onClose={closeActiveModal}
       />
+      <Footer />
     </div>
   );
 }
