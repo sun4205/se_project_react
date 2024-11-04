@@ -16,11 +16,11 @@ export const filterWeatherData = (data) => {
   result.temp = { F: data.main.temp };
   result.type = getWeatherType(result.temp.F);
   result.condition = data.weather[0].main.toLowerCase();
-  result.isDay = isDay(data.sys, Date.now());
+  result.isDay = isDay(data.sys);
   return result;
 };
 
-const isDay = ({ sunrise, sunset }, now) => {
+const isDay = ({ sunrise, sunset }) => {
   const now = Date.now();
   return sunrise * 1000 < now && now < sunset * 1000;
 };

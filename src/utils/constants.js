@@ -1,3 +1,13 @@
+import sunny from '../../assets/day/sunny.svg';
+export const weatherOptions = [
+  {
+    day:true,
+    condition:'sunny',
+    url: sunny,
+  
+  },
+]
+
 export const defaultClothingItems = [
   {
     _id: 0,
