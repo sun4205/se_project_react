@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+body,
+div {
+  user-select: none;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -9,10 +14,13 @@ img {
   display: block;
 }
 
+[contenteditable="true"] {
+  caret-color: transparent;
+}
+
 .page {
   background-color: #f3f3f3;
   font-family: "CabinetGrotesk", Arial, sans-serif;
-  cursor: none;
   display: flex;
   flex-direction: column;
   align-items: center;
