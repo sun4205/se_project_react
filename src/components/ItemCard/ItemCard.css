@@ -1,31 +1,31 @@
-.card{
-    width: 323px;
-    height: 326px;
-    border-radius: 12px;
-    border-color: rgba(0, 0, 0, 0.3);
-    position: relative;
-    display: flex;
-    justify-content: center;
+.card {
+  width: 323px;
+  height: 326px;
+  border-radius: 12px;
+  border-color: rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
-.card__name{
-    position: absolute;
-    top:15px;
-    margin:0;
-    width: 73px;
-    height: 24px;
-    background-color: #ffffff;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 20px;
-    color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
+.card__name {
+  position: absolute;
+  top: 15px;
+  margin: 0;
+  width: 73px;
+  height: 24px;
+  background-color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
 }
 
-.card__image{
-    width: 100%;
-    border-radius: 12px;
+.card__image {
+  width: 100%;
+  border-radius: 12px;
 }

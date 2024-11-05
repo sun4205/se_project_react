@@ -127,7 +127,6 @@ function App() {
         card={selectedCard}
         onClose={closeActiveModal}
       />
-      
     </div>
   );
 }
