@@ -6,7 +6,7 @@ export const weatherOptions = [
   },
   {
     day: true,
-    condition: "cloudy",
+    condition: "clouds",
     url: new URL("../assets/day/cloudy.svg", import.meta.url).href,
   },
   {
@@ -31,7 +31,7 @@ export const weatherOptions = [
   },
   {
     day: false,
-    condition: "cloudy",
+    condition: "clouds",
     url: new URL("../assets/night/night_cloudy.svg", import.meta.url).href,
   },
   {
@@ -44,6 +44,17 @@ export const weatherOptions = [
     condition: "snow",
     url: new URL("../assets/night/night_snow.svg", import.meta.url).href,
   },
+  {
+    day: true,
+    condition: "clear",
+    url: new URL("../assets/day/default.svg", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "clear",
+    url: new URL("../assets/night/night_default.svg", import.meta.url).href,
+  },
+
   {
     day: false,
     condition: "storm",
