@@ -34,7 +34,9 @@ function App() {
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
+        console.log("API response:", data);
         const filterData = filterWeatherData(data);
+        console.log("Filtered data:", filterData);
         setWeatherData(filterData);
       })
       .catch(console.error);
