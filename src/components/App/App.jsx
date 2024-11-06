@@ -38,9 +38,12 @@ function App() {
         const filterData = filterWeatherData(data);
         console.log("Filtered data:", filterData);
         setWeatherData(filterData);
+        console.log("Updated weatherData:", filterData);
       })
       .catch(console.error);
   }, []);
+
+  
 
   return (
     <div className="page">
