@@ -2,11 +2,17 @@ import sunny from "../../assets/day/sunny.svg";
 import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
 import "./WeatherCard.css";
 
-function WeatherCard({ weatherData, defaultWeatherOptions }) {
-  console.log("Current WeatherData:", weatherData); 
+function WeatherCard({
+  weatherData,
+  defaultWeatherOptions,
+  currentTemperatureUnit,
+}) {
+  console.log("Current WeatherData:", weatherData);
   console.log("WeatherCard Props:", weatherData, defaultWeatherOptions);
   const filteredOptions = weatherOptions.filter((option) => {
-    console.log(`Checking Option - Day: ${option.day}, Condition: ${option.condition}`);
+    console.log(
+      `Checking Option - Day: ${option.day}, Condition: ${option.condition}`
+    );
     return (
       option.day === weatherData?.isDay &&
       option.condition === weatherData?.condition
@@ -23,12 +29,17 @@ function WeatherCard({ weatherData, defaultWeatherOptions }) {
   } else {
     weatherOption = filteredOptions[0];
   }
+
+  const temperature =
+    currentTemperatureUnit === "F"
+      ? weatherData?.temp?.F
+      : weatherData?.temp?.C;
   console.log(weatherOptions[2].url);
   console.log("Selected weatherOption:", weatherOption);
   console.log("Image URL:", weatherOption?.url);
   return (
     <section className="weather-card">
-      <p className="weather-card__temp"> {weatherData?.temp?.F} &deg; F</p>
+      <p className="weather-card__temp"> {weatherData.temp[currentTemperatureUnit]} &deg; </p>
       <img
         className={`weather-card__image ${
           weatherOption?.condition || "default-condition"
