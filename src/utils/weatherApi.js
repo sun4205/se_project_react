@@ -13,7 +13,7 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
 export const filterWeatherData = (data,currentTemperatureUnit) => {
   const result = {};
   result.city = data.name;
-  result.temp = {w
+  result.temp = {
     C: data.main.temp,
     F: Math.round(((data.main.temp - 32) * 5) / 9),
   };
