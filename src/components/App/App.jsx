@@ -43,7 +43,7 @@ function App() {
     getWeather(coordinates, APIkey)
       .then((data) => {
         console.log("API response:", data);
-        const filterData = filterWeatherData(data);
+        const filterData = filterWeatherData(data,currentTemperatureUnit);
         console.log("Filtered data:", filterData);
         setWeatherData(filterData);
       })
