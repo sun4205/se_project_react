@@ -29,6 +29,7 @@
   line-height: 24px;
   color: black;
   border: none;
+  margin-left: 20px;
 }
 
 .header__user-container {
