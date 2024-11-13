@@ -12,6 +12,7 @@ import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from '../AddItemModal/AddItemModal';
 import Profile from '../Profile/Profile';
+import { getItems, addItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -20,6 +21,7 @@ function App() {
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
+  const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
@@ -43,10 +45,18 @@ function App() {
     console.log(values)
   }
 
+
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
   };
+
+  const handleAddItemSubmit = (item) => {
+    addItem(item).then((newItem)=>{
+      setClothingItems([newItem, ...clothingItems]);
+      setActiveModal(null);
+    }).catch((err) => console.log(err));
+  }
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -58,6 +68,10 @@ function App() {
       })
       .catch(console.error);
   }, []);
+
+  useEffect(() => {
+    getItems().then((data)=>{setClothingItems(data)}).catch(console.error);
+  }, []);
   console.log(currentTemperatureUnit);
   return (
     <div className="page">
@@ -68,13 +82,13 @@ function App() {
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
           <Routes>
             <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} />}/>
-            <Route path="/profile" element={<Profile />}/>
+            <Route path="/profile" element={<Profile onCardClick={handleCardClick}/>}/>
           </Routes>
           
           <Footer />
         </div>
         
-        <AddItemModal activeModal={activeModal} closeActiveModal={closeActiveModal} onAddItem={onAddItem}/>
+        <AddItemModal activeModal={activeModal} closeActiveModal={closeActiveModal} onAddItem={handleAddItemSubmit}/>
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}

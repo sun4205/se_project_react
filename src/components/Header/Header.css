@@ -37,6 +37,10 @@
   align-items: center;
 }
 
+.header__link {
+  text-decoration: none;
+}
+
 .header__userName {
   margin: 0;
   font-weight: 700;

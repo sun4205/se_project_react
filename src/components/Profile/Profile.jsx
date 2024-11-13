@@ -3,17 +3,15 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 import { defaultClothingItems } from "../../utils/constants";
 import "./Profile.css";
 
-const Profile = () => {
-  const handleCardClick = (item) => {
-    console.log("Card clicked:", item);
-  };
+const Profile = ({onCardClick}) => {
+ 
   return (
     <div className="profile">
       <section className="profile__sideBar">
         <SideBar />
       </section>
       <section className="profile__clothing-items">
-        <ClothesSection handleCardClick={handleCardClick} />
+        <ClothesSection onCardClick={onCardClick} />
       </section>
     </div>
   );
