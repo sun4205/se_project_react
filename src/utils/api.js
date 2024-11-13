@@ -9,20 +9,18 @@ function getItems() {
 }
 
 const addItem = ({ name, weather, imageUrl }) => {
-  return (
-    fetch(`${baseUrl}/items`),
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        weather,
-        imageUrl,
-      }),
-    }.then(getItems)
-  );
+  return fetch(`${baseUrl}/items`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      weather,
+      imageUrl,
+    }),
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  });
 };
-
 export { getItems, addItem };
