@@ -1,6 +1,6 @@
-.clothesSection{
-    box-sizing: border-box;
-    margin-left: 116px;
+.clothesSection {
+  box-sizing: border-box;
+  margin-left: 116px;
 }
 .clothesSection__controls {
   display: flex;
@@ -32,6 +32,4 @@
   width: 100%;
   margin-top: 16px;
   gap: 20px;
-  
-  
 }

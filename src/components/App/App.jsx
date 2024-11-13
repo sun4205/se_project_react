@@ -10,8 +10,8 @@ import { coordinates, APIkey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import AddItemModal from '../AddItemModal/AddItemModal';
-import Profile from '../Profile/Profile';
+import AddItemModal from "../AddItemModal/AddItemModal";
+import Profile from "../Profile/Profile";
 import { getItems, addItem } from "../../utils/api";
 
 function App() {
@@ -39,12 +39,19 @@ function App() {
     setActiveModal("");
   };
 
-  const onAddItem = (values) => {
-    
-    // console.log(e.target);
-    console.log(values)
-  }
+  const removeItem = (id) => {
+    return fetch(`${baseUrl}/items/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(getItems);
+  };
+  // const onAddItem = (values) => {
 
+  //   // console.log(e.target);
+  //   console.log(values)
+  // }
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
@@ -52,17 +59,19 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
-    addItem(item).then((newItem)=>{
-      setClothingItems([newItem, ...clothingItems]);
-      setActiveModal(null);
-    }).catch((err) => console.log(err));
-  }
+    addItem(item)
+      .then((newItem) => {
+        setClothingItems([newItem, ...clothingItems]);
+        setActiveModal(null);
+      })
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
         console.log("API response:", data);
-        const filterData = filterWeatherData(data,currentTemperatureUnit);
+        const filterData = filterWeatherData(data, currentTemperatureUnit);
         console.log("Filtered data:", filterData);
         setWeatherData(filterData);
       })
@@ -70,7 +79,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getItems().then((data)=>{setClothingItems(data)}).catch(console.error);
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
   }, []);
   console.log(currentTemperatureUnit);
   return (
@@ -81,18 +94,34 @@ function App() {
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
           <Routes>
-            <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} />}/>
-            <Route path="/profile" element={<Profile onCardClick={handleCardClick}/>}/>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={<Profile onCardClick={handleCardClick} />}
+            />
           </Routes>
-          
+
           <Footer />
         </div>
-        
-        <AddItemModal activeModal={activeModal} closeActiveModal={closeActiveModal} onAddItem={handleAddItemSubmit}/>
+
+        <AddItemModal
+          activeModal={activeModal}
+          closeActiveModal={closeActiveModal}
+          handleAddItemSubmit={handleAddItemSubmit}
+        />
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
+          removeItem={removeItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

@@ -19,7 +19,7 @@
 .header__controls {
   display: flex;
   align-items: center;
-  margin-left: auto; 
+  margin-left: auto;
 }
 
 .header__add-clothes-btn {
