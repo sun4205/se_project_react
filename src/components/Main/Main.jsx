@@ -6,11 +6,11 @@ import { defaultClothingItems } from "../../utils/constants";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherData, handleCardClick }) {
+function Main({ clothingItems, weatherData, handleCardClick }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   console.log(currentTemperatureUnit);
   console.log("Weather data in Main:", weatherData);
-  const filteredItems = defaultClothingItems.filter(
+  const filteredItems = clothingItems.filter(
     (item) => item.weather === weatherData.type
   );
   return (

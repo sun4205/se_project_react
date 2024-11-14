@@ -78,6 +78,7 @@ function App() {
 
           setDeleteConfirmation(false);
           closeRemoveItemModal();
+          closeActiveModal();
         })
         .catch(console.error);
     }
@@ -116,6 +117,7 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
                 />
               }
             />
