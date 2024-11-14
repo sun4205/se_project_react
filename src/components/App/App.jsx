@@ -12,7 +12,8 @@ import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import { getItems, addItem } from "../../utils/api";
+import { getItems, addItem, removeItem } from "../../utils/api";
+import RemoveItem from "../RemoveItem/RemoveItem";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -24,11 +25,25 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
+  const [isRemoveItemModalOpen, setIsRemoveItemModalOpen] = useState(false);
+
+  const openRemoveItemModal = (card) => {
+    setSelectedCard(card);
+    setIsRemoveItemModalOpen(true);
+  };
+  const closeRemoveItemModal = () => setIsRemoveItemModalOpen(false);
 
   const handleCardClick = (card) => {
     console.log("Clicked card:", card);
     setActiveModal("preview");
     setSelectedCard(card);
+  };
+
+  const handleDeleteClick = (card) => {
+    console.log("handleDeleteClick called with card:", card);
+    setSelectedCard(card);
+    openRemoveItemModal(card);
   };
 
   const handleAddClick = () => {
@@ -38,20 +53,6 @@ function App() {
   const closeActiveModal = () => {
     setActiveModal("");
   };
-
-  const removeItem = (id) => {
-    return fetch(`${baseUrl}/items/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(getItems);
-  };
-  // const onAddItem = (values) => {
-
-  //   // console.log(e.target);
-  //   console.log(values)
-  // }
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
@@ -65,6 +66,13 @@ function App() {
         setActiveModal(null);
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleDeleteConfirm = () => {
+    if (selectedCard) {
+      removeItem(selectedCard.id);
+      closeRemoveItemModal();
+    }
   };
 
   useEffect(() => {
@@ -121,7 +129,12 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
-          removeItem={removeItem}
+          handleDeleteClick={handleDeleteClick}
+        />
+        <RemoveItem
+          activeModal={isRemoveItemModalOpen ? "remove-item" : ""}
+          onClose={closeRemoveItemModal}
+          onConfirm={handleDeleteConfirm}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

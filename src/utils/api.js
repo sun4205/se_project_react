@@ -23,4 +23,24 @@ const addItem = ({ name, weather, imageUrl }) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
 };
-export { getItems, addItem };
+
+const removeItem = (id) => {
+  return fetch(`${baseUrl}/items/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) =>
+      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+    )
+    .then(() => {
+      setClothingItems((prevItems) =>
+        prevItems.filter((item) => item.id !== id)
+      );
+      setDeleteConfirmation(false);
+      setSelectedCard(null);
+    })
+    .catch(console.error);
+};
+export { getItems, addItem, removeItem };
