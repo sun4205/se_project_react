@@ -20,7 +20,10 @@ const RemoveItem = ({ activeModal, onClose, onConfirm }) => {
         </div>
         <div className="removeItem__buttons">
           <button
-            onClick={onConfirm}
+            onClick={() => {
+              console.log("Delete confirmed");
+              onConfirm();
+            }}
             type="button"
             className="removeItem__button"
           >

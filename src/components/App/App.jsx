@@ -70,8 +70,16 @@ function App() {
 
   const handleDeleteConfirm = () => {
     if (selectedCard) {
-      removeItem(selectedCard.id);
-      closeRemoveItemModal();
+      removeItem(selectedCard._id)
+        .then(() => {
+          setClothingItems((prevItems) =>
+            prevItems.filter((item) => item._id !== selectedCard._id)
+          );
+
+          setDeleteConfirmation(false);
+          closeRemoveItemModal();
+        })
+        .catch(console.error);
     }
   };
 

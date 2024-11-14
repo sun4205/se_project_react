@@ -24,23 +24,15 @@ const addItem = ({ name, weather, imageUrl }) => {
   });
 };
 
-const removeItem = (id) => {
-  return fetch(`${baseUrl}/items/${id}`, {
+const removeItem = (_id) => {
+  console.log("Deleting item with _id:", _id);
+  return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
-  })
-    .then((res) =>
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-    )
-    .then(() => {
-      setClothingItems((prevItems) =>
-        prevItems.filter((item) => item.id !== id)
-      );
-      setDeleteConfirmation(false);
-      setSelectedCard(null);
-    })
-    .catch(console.error);
+  }).then((res) =>
+    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+  );
 };
 export { getItems, addItem, removeItem };
