@@ -11,7 +11,7 @@ function ItemModal({ activeModal, onClose, card, handleDeleteClick }) {
         <button onClick={onClose} type="button" className="modal__close">
           <img src={itemModalclose} alt="close_button" />
         </button>
-        <img src={card.link} alt={card.name} className="modal__image" />
+        <img src={card.imageUrl} alt={card.name} className="modal__image" />
 
         <div className="modal__footer">
           <section className="modal__footer-section">
