@@ -29,6 +29,7 @@ const AddItemModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Form submitted with values:", { name, imageUrl, weather });
     handleAddItemSubmit({ name, imageUrl, weather });
   };
 

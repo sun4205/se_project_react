@@ -39,6 +39,7 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
+  
 
   const handleDeleteClick = (card) => {
     console.log("handleDeleteClick called with card:", card);
@@ -60,9 +61,11 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
+    console.log("handleAddItemSubmit called with item:", item); 
     addItem(item)
       .then((newItem) => {
-        setClothingItems([newItem, ...clothingItems]);
+        console.log("Current clothingItems before update:", clothingItems);
+        setClothingItems([newItem, ...clothingItems]);        
         setActiveModal(null);
       })
       .catch((err) => console.log(err));
