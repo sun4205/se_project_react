@@ -4,6 +4,7 @@ import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
 
 const ClothesSection = ({ onCardClick }) => {
+  
   return (
     <div className="clothesSection">
       <section className="clothesSection__controls">
@@ -12,7 +13,7 @@ const ClothesSection = ({ onCardClick }) => {
       </section>
       <section className="clothesSection__lists">
         <ul className="cards__list">
-          {defaultClothingItems.map((item) => (
+          {defaultClothingItems.map((item) => (            
             <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
           ))}
         </ul>

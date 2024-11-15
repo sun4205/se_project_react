@@ -1,6 +1,8 @@
 import "./ItemCard.css";
 
 function ItemCard({ item, onCardClick }) {
+  console.log("Item in ItemCard:", item);
+  console.log("Image URL:", item.imageUrl);
   const handleCardClick = () => {
     onCardClick(item);
   };
