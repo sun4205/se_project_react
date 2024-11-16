@@ -1,7 +1,7 @@
 import "./RemoveItem.css";
 import close from "../../assets/close_button.svg";
 
-const RemoveItem = ({ activeModal, onClose, onConfirm }) => {
+const RemoveItem = ({ activeModal, onClose, handleDeleteConfirm }) => {
   return (
     <div
       className={`modal modal__remove-item ${
@@ -22,7 +22,7 @@ const RemoveItem = ({ activeModal, onClose, onConfirm }) => {
           <button
             onClick={() => {
               console.log("Delete confirmed");
-              onConfirm();
+              handleDeleteConfirm();
             }}
             type="button"
             className="removeItem__button"

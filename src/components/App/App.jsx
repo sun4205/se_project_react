@@ -147,7 +147,7 @@ function App() {
         <RemoveItem
           activeModal={isRemoveItemModalOpen ? "remove-item" : ""}
           onClose={closeRemoveItemModal}
-          onConfirm={handleDeleteClick}
+          onConfirm={handleDeleteConfirm}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
