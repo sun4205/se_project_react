@@ -22,7 +22,7 @@ function ItemModal({ activeModal, onClose, card, handleDeleteClick }) {
             <button
                onClick={() => {
                 console.log("Delete button clicked", card); 
-                handleDeleteClick(); 
+                handleDeleteClick(card); 
               }}
               type="button"
               className="modal__delete"
