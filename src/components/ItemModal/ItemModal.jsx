@@ -3,9 +3,7 @@ import itemModalclose from "../../assets/itemModalClose.svg";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function ItemModal({ activeModal, onClose, card, handleDeleteClick }) {
-  
   return (
-    
     <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
       <div className="modal__content modal__content_type_image">
         <button onClick={onClose} type="button" className="modal__close">
@@ -20,9 +18,9 @@ function ItemModal({ activeModal, onClose, card, handleDeleteClick }) {
           </section>
           <section>
             <button
-               onClick={() => {
-                console.log("Delete button clicked", card); 
-                handleDeleteClick(card); 
+              onClick={() => {
+                console.log("Delete button clicked", card);
+                handleDeleteClick(card);
               }}
               type="button"
               className="modal__delete"

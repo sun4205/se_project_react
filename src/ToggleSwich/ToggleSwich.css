@@ -1,51 +1,51 @@
-.switch{
-    display: flex;
-    position: relative;
+.switch {
+  display: flex;
+  position: relative;
 }
 .switch__box {
-    border-radius: 25px;
-    border:2px solid black;
-    width: 55px;
-    height: 30px;   
-    appearance: none;
+  border-radius: 25px;
+  border: 2px solid black;
+  width: 55px;
+  height: 30px;
+  appearance: none;
 }
 
-.switch__slider{
-    border-radius: 20px;
-    width: 30px;
-    height: 30px;
-    background-color: black;
-    color:white;
-    text-align: center;
-    cursor: pointer;
-    position: absolute;
+.switch__slider {
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
 }
 
 .switch__slider-F {
-top:0px;
-left:23px;
+  top: 0px;
+  left: 23px;
 }
 
 .switch__slider-C {
-top:0px;
-left:1px;
+  top: 0px;
+  left: 1px;
 }
 
 .switch__temp-C {
-    position:absolute;
-    top:-10px;
-    left:10px;
-    color:white;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  color: white;
 }
 
 .switch__temp-F {
-    position: absolute;
-    top:-10px;
-    left:34px;
-    color:white;
+  position: absolute;
+  top: -10px;
+  left: 34px;
+  color: white;
 }
 
 .switch__active {
-    color :white;
-    font-size: 16px;
+  color: white;
+  font-size: 16px;
 }

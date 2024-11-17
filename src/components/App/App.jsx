@@ -39,7 +39,6 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
-  
 
   const handleDeleteClick = (card) => {
     console.log("handleDeleteClick called with card:", card);
@@ -61,11 +60,11 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
-    console.log("handleAddItemSubmit called with item:", item); 
+    console.log("handleAddItemSubmit called with item:", item);
     addItem(item)
       .then((newItem) => {
         console.log("Current clothingItems before update:", clothingItems);
-        setClothingItems([newItem, ...clothingItems]);        
+        setClothingItems([newItem, ...clothingItems]);
         setActiveModal(null);
       })
       .catch((err) => console.log(err));
@@ -126,7 +125,13 @@ function App() {
             />
             <Route
               path="/profile"
-              element={<Profile onCardClick={handleCardClick} clothingItems={clothingItems} handleAddClick={handleAddClick} />}
+              element={
+                <Profile
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
+                />
+              }
             />
           </Routes>
 

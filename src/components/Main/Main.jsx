@@ -6,7 +6,7 @@ import { defaultClothingItems } from "../../utils/constants";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import ClothesSection from "../ClothesSection/ClothesSection";
-import { getItems } from '../../utils/api'; 
+import { getItems } from "../../utils/api";
 
 function Main({ clothingItems, weatherData, handleCardClick }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);

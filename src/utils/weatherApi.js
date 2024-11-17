@@ -10,12 +10,12 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
   });
 };
 
-export const filterWeatherData = (data,currentTemperatureUnit) => {
+export const filterWeatherData = (data, currentTemperatureUnit) => {
   const result = {};
   result.city = data.name;
   result.temp = {
-    C: data.main.temp,
-    F: Math.round(((data.main.temp - 32) * 5) / 9),
+    F: data.main.temp,
+    C: Math.round(((data.main.temp - 32) * 5) / 9),
   };
   console.log("Temperature object:", result.temp);
   result.type = getWeatherType(result.temp, currentTemperatureUnit);
