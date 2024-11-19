@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
+import useEscapeKey from '../../utils/useEscapeKey'
 
 const AddItemModal = ({
   activeModal,
@@ -13,6 +14,9 @@ const AddItemModal = ({
     imageUrl: "",
     weather: "",
   });
+  
+  const modalRef = useRef(null);
+  useEscapeKey(activeModal === 'add-garment',closeActiveModal, modalRef);
 
   const handleSubmit = (e) => {
     e.preventDefault();
