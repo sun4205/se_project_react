@@ -1,7 +1,11 @@
 import "./RemoveItem.css";
 import close from "../../assets/close_button.svg";
+import useEscapeKey from "../../utils/useEscapeKey";
 
-const RemoveItem = ({ activeModal, onClose, onConfirm }) => {
+const RemoveItem = ({ activeModal, onClose, onConfirm, buttonText}) => {
+  useEscapeKey(activeModal === "remove-item", onClose);
+  console.log("Button Text inside RemoveItem:", buttonText);
+  
   return (
     <div
       className={`modal modal__remove-item ${
@@ -27,7 +31,7 @@ const RemoveItem = ({ activeModal, onClose, onConfirm }) => {
             type="button"
             className="removeItem__button"
           >
-            Yes, delete item
+            {buttonText}
           </button>
           <button
             onClick={onClose}

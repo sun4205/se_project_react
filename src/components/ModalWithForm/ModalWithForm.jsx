@@ -10,6 +10,7 @@ function ModalWithForm({
   handleCloseClick,
   onSubmit,
 }) {
+  console.log("Modal Button Text:", buttonText); 
   return (
     <div className={`modal  ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content">

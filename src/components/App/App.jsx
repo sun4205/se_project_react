@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -14,6 +14,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import { getItems, addItem, removeItem } from "../../utils/api";
 import RemoveItem from "../RemoveItem/RemoveItem";
+import useEscapeKey from "../../utils/useEscapeKey";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -27,6 +28,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [isRemoveItemModalOpen, setIsRemoveItemModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const openRemoveItemModal = (card) => {
     setSelectedCard(card);
@@ -54,6 +56,8 @@ function App() {
     setActiveModal("");
   };
 
+  useEscapeKey(!!activeModal, closeActiveModal);
+
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -61,17 +65,26 @@ function App() {
 
   const handleAddItemSubmit = (item) => {
     console.log("handleAddItemSubmit called with item:", item);
+    setIsLoading(true);
+    console.log("Button Text:", isLoading ? "Saving..." : "Save");
+
     addItem(item)
       .then((newItem) => {
         console.log("Current clothingItems before update:", clothingItems);
         setClothingItems([newItem, ...clothingItems]);
-        closeActiveModal(); 
+        closeActiveModal();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
+      });
   };
 
   const handleDeleteConfirm = () => {
     if (selectedCard) {
+      setIsLoading(true);
       removeItem(selectedCard._id)
         .then(() => {
           setClothingItems((prevItems) =>
@@ -81,8 +94,17 @@ function App() {
           setDeleteConfirmation(false);
           closeRemoveItemModal();
           closeActiveModal();
+          setIsLoading(false);
         })
-        .catch(console.error);
+        .catch((error) => {
+          console.error(error);
+          setIsLoading(false);
+        })
+        .finally(() => {
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 500);
+        });
     }
   };
 
@@ -142,6 +164,7 @@ function App() {
           activeModal={activeModal}
           closeActiveModal={closeActiveModal}
           handleAddItemSubmit={handleAddItemSubmit}
+          buttonText={isLoading ? "Saving..." : "add garment"}
         />
         <ItemModal
           activeModal={activeModal}
@@ -153,6 +176,7 @@ function App() {
           activeModal={isRemoveItemModalOpen ? "remove-item" : ""}
           onClose={closeRemoveItemModal}
           onConfirm={handleDeleteConfirm}
+          buttonText={isLoading ? "Deleting..." : "Yes, delete item"}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
