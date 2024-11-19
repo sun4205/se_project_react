@@ -39,7 +39,10 @@ function WeatherCard({
   console.log("Image URL:", weatherOption?.url);
   return (
     <section className="weather-card">
-      <p className="weather-card__temp"> {temperature} &deg; </p>
+      <p className="weather-card__temp">
+        {" "}
+        {temperature} {currentTemperatureUnit}{" "}
+      </p>
       <img
         className={`weather-card__image ${
           weatherOption?.condition || "default-condition"

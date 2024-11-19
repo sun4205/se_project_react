@@ -65,7 +65,7 @@ function App() {
       .then((newItem) => {
         console.log("Current clothingItems before update:", clothingItems);
         setClothingItems([newItem, ...clothingItems]);
-        setActiveModal(null);
+        closeActiveModal(); 
       })
       .catch((err) => console.log(err));
   };
