@@ -1,22 +1,22 @@
 import React, { useRef, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
-import useEscapeKey from '../../utils/useEscapeKey'
+import useEscapeKey from "../../utils/useEscapeKey";
 
 const AddItemModal = ({
   activeModal,
   closeActiveModal,
   handleAddItemSubmit,
-  buttonText
+  buttonText,
 }) => {
   const { values, handleChange } = useForm({
     name: "",
     imageUrl: "",
     weather: "",
   });
-  
+
   const modalRef = useRef(null);
-  useEscapeKey(activeModal === 'add-garment',closeActiveModal, modalRef);
+  useEscapeKey(!!activeModal, closeActiveModal, modalRef);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,6 +32,7 @@ const AddItemModal = ({
       activeModal={activeModal}
       handleCloseClick={closeActiveModal}
       onSubmit={handleSubmit}
+      modalRef={modalRef}
     >
       <label htmlFor="name" className="modal__label">
         Name
