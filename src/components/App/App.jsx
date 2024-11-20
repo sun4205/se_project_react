@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -55,8 +55,9 @@ function App() {
   const closeActiveModal = () => {
     setActiveModal("");
   };
+  const modalRef = useRef(null);
 
-  useEscapeKey(!!activeModal, closeActiveModal);
+  useEscapeKey(!!activeModal, closeActiveModal, modalRef);
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
