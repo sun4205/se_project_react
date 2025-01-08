@@ -18,6 +18,7 @@ import useEscapeKey from "../../utils/useEscapeKey";
 import { register, authorize } from "../../utils/auth";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -32,6 +33,8 @@ function App() {
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [isRemoveItemModalOpen, setIsRemoveItemModalOpen] = useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   
  
   
@@ -224,7 +227,8 @@ function App() {
   }, []);
   console.log(currentTemperatureUnit);
   return (
-    <div className="page">
+    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+    <div className="page">       
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
@@ -282,7 +286,9 @@ function App() {
         />
         
       </CurrentTemperatureUnitContext.Provider>
+      
     </div>
+    </CurrentUserContext.Provider>
   );
 }
 
