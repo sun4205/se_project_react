@@ -194,7 +194,7 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <div className="page__content">
-          <Header openRegisterModal={openRegisterModal} weatherData={weatherData} />
+          <Header openLoginModal={openLoginModal} openRegisterModal={openRegisterModal} weatherData={weatherData} />
           <Routes>
             <Route
               path="/"
