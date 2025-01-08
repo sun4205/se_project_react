@@ -32,7 +32,7 @@ function App() {
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [isRemoveItemModalOpen, setIsRemoveItemModalOpen] = useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  
  
   
 
@@ -206,7 +206,7 @@ function App() {
                 />
               }
             />
-            <Route
+            {/* <Route
               path="/profile"
               element={
                 <Profile
@@ -215,7 +215,7 @@ function App() {
                   handleAddClick={handleAddClick}
                 />
               }
-            />
+            /> */}
           </Routes>
 
           <Footer />
