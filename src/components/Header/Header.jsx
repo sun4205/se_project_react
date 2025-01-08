@@ -4,7 +4,7 @@ import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({ openRegisterModal, weatherData,openLoginModal }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -22,18 +22,22 @@ function Header({ handleAddClick, weatherData }) {
       <div className="header__controls">
         <ToggleSwitch />
         <button
-          onClick={handleAddClick}
+          onClick={openRegisterModal}
           type="button"
           className="header__add-clothes-btn"
         >
-          +Add clothes
+          Sign up
         </button>
       </div>
 
       <div className="header__user-container">
-        <Link to="/profile" className="header__link">
-          <p className="header__userName">Terrence Tegegine</p>
-        </Link>
+      <button
+          onClick={openLoginModal}
+          type="button"
+          className="header__add-clothes-btn"
+        >
+          Log in
+        </button>
 
         <img className="header__avatar" src={avatar} alt="Terrence Tegegine" />
       </div>

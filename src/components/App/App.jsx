@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, act } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -15,6 +15,9 @@ import Profile from "../Profile/Profile";
 import { getItems, addItem, removeItem } from "../../utils/api";
 import RemoveItem from "../RemoveItem/RemoveItem";
 import useEscapeKey from "../../utils/useEscapeKey";
+import { register, authorize } from "../../utils/auth";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -29,6 +32,9 @@ function App() {
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [isRemoveItemModalOpen, setIsRemoveItemModalOpen] = useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+ 
+  
 
   const openRemoveItemModal = (card) => {
     setSelectedCard(card);
@@ -51,6 +57,18 @@ function App() {
   const handleAddClick = () => {
     setActiveModal("add-garment");
   };
+
+  const openRegisterModal = () => {
+    console.log("Opening register modal");
+    setActiveModal("register");
+  };
+
+  const openLoginModal = () =>{
+    console.log("opening login modal ");
+    setActiveModal("login");
+  }
+
+   
 
   const closeActiveModal = () => {
     setActiveModal("");
@@ -76,6 +94,48 @@ function App() {
         closeActiveModal();
       })
       .catch((err) => console.log(err))
+      .finally(() => {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
+      });
+  };
+
+  const handleRegisterSubmit = (values) => {
+    console.log("handleRegisterSubmit called with values:", values);
+    setIsLoading(true);
+
+    register(values.name, values.avatarURL, values.email, values.password)
+      .then(() => {
+        console.log("Registration successful, signing in...");
+        return authorize(values.email, values.password);
+      })
+      .then((userData) => {
+        console.log("User logged in successfully:", userData);
+        closeActiveModal();
+      })
+      .catch((err) => console.error("Error during registration or login:", err))
+      .finally(() => {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
+      });
+  };
+
+  const handleLoginSubmit = (values) => {
+    console.log("handleLoginrSubmit called with values:", values);
+    setIsLoading(true);
+
+    login(values.email, values.password)
+      .then(() => {
+        console.log("Login is successful, Loging in...");
+        return authorize(values.email, values.password);
+      })
+      .then((userData) => {
+        console.log("User logged in successfully:", userData);
+        closeActiveModal();
+      })
+      .catch((err) => console.error("Error during login:", err))
       .finally(() => {
         setTimeout(() => {
           setIsLoading(false);
@@ -134,7 +194,7 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Header openRegisterModal={openRegisterModal} weatherData={weatherData} />
           <Routes>
             <Route
               path="/"
@@ -161,11 +221,11 @@ function App() {
           <Footer />
         </div>
 
-        <AddItemModal
+        <RegisterModal
           activeModal={activeModal}
           closeActiveModal={closeActiveModal}
-          handleAddItemSubmit={handleAddItemSubmit}
-          buttonText={isLoading ? "Saving..." : "add garment"}
+          handleRegisterSubmit={handleRegisterSubmit}
+          buttonText={isLoading ? "Register..." : "Next"}
         />
         <ItemModal
           activeModal={activeModal}
@@ -179,6 +239,13 @@ function App() {
           onConfirm={handleDeleteConfirm}
           buttonText={isLoading ? "Deleting..." : "Yes, delete item"}
         />
+        <LoginModal
+        activeModal={activeModal}
+        closeActiveModal={closeActiveModal}
+        handleRegisterSubmit={handleLoginSubmit}
+        buttonText={isLoading ? "logging in..." : "login"}
+        />
+        
       </CurrentTemperatureUnitContext.Provider>
     </div>
   );

@@ -6,8 +6,7 @@ import useEscapeKey from "../../utils/useEscapeKey";
 
 const LoginModal = ({
   activeModal,
-  closeActiveModal,
-  handleAddItemSubmit,
+  closeActiveModal,  
   buttonText,
 }) => {
   const { values, handleChange } = useForm({
@@ -22,7 +21,7 @@ const LoginModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted with values:", values);
-    handleAddItemSubmit(values);
+    handleLoginSubmit(values);
   };
 
   return (

@@ -25,9 +25,12 @@ function ModalWithForm({
         </button>
         <form onSubmit={onSubmit} className="modal__form">
           {children}
+          <div className="modal__button-container">
           <button type="submit" className="modal__submit">
-            {buttonText}
+            {buttonText} 
           </button>
+          <button type="submit" className="modal__submit modal__submit_without-border">or Login</button>
+          </div>
         </form>
       </div>
     </div>
