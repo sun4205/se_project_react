@@ -101,6 +101,41 @@ function App() {
       });
   };
 
+  const handleLogin = ({ username, password }) => {
+    if (!username || !password) {
+      return;
+    }
+
+    auth
+      .authorize(username, password)
+      .then((data) => {
+        if (data.jwt) {
+          setToken(data.jwt);
+          setUserData(data.user);
+          setIsLoggedIn(true);
+          const redirectPath = location.state?.from?.pathname || "";
+          navigate(redirectPath);
+        }
+      })
+      .catch(console.error);
+  };
+
+  useEffect(() => {
+    const jwt = getToken();
+
+    if (!jwt) {
+      return;
+    }
+
+    api
+      .getUserInfo(jwt)
+      .then(({ username, email }) => {
+        setIsLoggedIn(true);
+        setUserData({ username, email });
+      })
+      .catch(console.error);
+  }, []);
+
   const handleRegisterSubmit = (values) => {
     console.log("handleRegisterSubmit called with values:", values);
     setIsLoading(true);
