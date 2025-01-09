@@ -19,6 +19,7 @@ import { register, authorize } from "../../utils/auth";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { getToken } from "../../utils/token";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
