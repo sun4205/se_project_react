@@ -36,9 +36,6 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
- 
-  
 
   const openRemoveItemModal = (card) => {
     setSelectedCard(card);
@@ -67,12 +64,10 @@ function App() {
     setActiveModal("register");
   };
 
-  const openLoginModal = () =>{
+  const openLoginModal = () => {
     console.log("opening login modal ");
     setActiveModal("login");
-  }
-
-   
+  };
 
   const closeActiveModal = () => {
     setActiveModal("");
@@ -161,27 +156,7 @@ function App() {
       });
   };
 
-  const handleLoginSubmit = (values) => {
-    console.log("handleLoginrSubmit called with values:", values);
-    setIsLoading(true);
-
-    login(values.email, values.password)
-      .then(() => {
-        console.log("Login is successful, Loging in...");
-        return authorize(values.email, values.password);
-      })
-      .then((userData) => {
-        console.log("User logged in successfully:", userData);
-        closeActiveModal();
-      })
-      .catch((err) => console.error("Error during login:", err))
-      .finally(() => {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
-      });
-  };
-
+  
   const handleDeleteConfirm = () => {
     if (selectedCard) {
       setIsLoading(true);
@@ -229,24 +204,28 @@ function App() {
   console.log(currentTemperatureUnit);
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-    <div className="page">       
-      <CurrentTemperatureUnitContext.Provider
-        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-      >
-        <div className="page__content">
-          <Header openLoginModal={openLoginModal} openRegisterModal={openRegisterModal} weatherData={weatherData} />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Main
-                  weatherData={weatherData}
-                  handleCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                />
-              }
+      <div className="page">
+        <CurrentTemperatureUnitContext.Provider
+          value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+        >
+          <div className="page__content">
+            <Header
+              openLoginModal={openLoginModal}
+              openRegisterModal={openRegisterModal}
+              weatherData={weatherData}
             />
-            {/* <Route
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Main
+                    weatherData={weatherData}
+                    handleCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                  />
+                }
+              />
+              {/* <Route
               path="/profile"
               element={
                 <Profile
@@ -256,39 +235,37 @@ function App() {
                 />
               }
             /> */}
-          </Routes>
+            </Routes>
 
-          <Footer />
-        </div>
+            <Footer />
+          </div>
 
-        <RegisterModal
-          activeModal={activeModal}
-          closeActiveModal={closeActiveModal}
-          handleRegisterSubmit={handleRegisterSubmit}
-          buttonText={isLoading ? "Register..." : "Next"}
-        />
-        <ItemModal
-          activeModal={activeModal}
-          card={selectedCard}
-          onClose={closeActiveModal}
-          handleDeleteClick={handleDeleteClick}
-        />
-        <RemoveItem
-          activeModal={isRemoveItemModalOpen ? "remove-item" : ""}
-          onClose={closeRemoveItemModal}
-          onConfirm={handleDeleteConfirm}
-          buttonText={isLoading ? "Deleting..." : "Yes, delete item"}
-        />
-        <LoginModal
-        activeModal={activeModal}
-        closeActiveModal={closeActiveModal}
-        handleRegisterSubmit={handleLoginSubmit}
-        buttonText={isLoading ? "logging in..." : "login"}
-        />
-        
-      </CurrentTemperatureUnitContext.Provider>
-      
-    </div>
+          <RegisterModal
+            activeModal={activeModal}
+            closeActiveModal={closeActiveModal}
+            handleRegisterSubmit={handleRegisterSubmit}
+            buttonText={isLoading ? "Register..." : "Next"}
+          />
+          <ItemModal
+            activeModal={activeModal}
+            card={selectedCard}
+            onClose={closeActiveModal}
+            handleDeleteClick={handleDeleteClick}
+          />
+          <RemoveItem
+            activeModal={isRemoveItemModalOpen ? "remove-item" : ""}
+            onClose={closeRemoveItemModal}
+            onConfirm={handleDeleteConfirm}
+            buttonText={isLoading ? "Deleting..." : "Yes, delete item"}
+          />
+          <LoginModal
+            activeModal={activeModal}
+            closeActiveModal={closeActiveModal}
+            buttonText="LogIn"
+            handleLogin={handleLogin}
+          />
+        </CurrentTemperatureUnitContext.Provider>
+      </div>
     </CurrentUserContext.Provider>
   );
 }

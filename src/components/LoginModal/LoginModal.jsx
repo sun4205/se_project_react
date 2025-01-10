@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
 import useEscapeKey from "../../utils/useEscapeKey";
@@ -8,6 +8,7 @@ const LoginModal = ({
   activeModal,
   closeActiveModal,  
   buttonText,
+  handleLogin,
 }) => {
   const { values, handleChange } = useForm({
     email: "",
@@ -21,7 +22,10 @@ const LoginModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted with values:", values);
-    handleLoginSubmit(values);
+    handleLogin({
+      username: values.email, 
+      password: values.password,
+    });
   };
 
   return (
