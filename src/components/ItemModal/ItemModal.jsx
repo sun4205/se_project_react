@@ -4,11 +4,23 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useRef } from "react";
 import useEscapeKey from "../../utils/useEscapeKey";
 
-function ItemModal({ activeModal, onClose, card, handleDeleteClick }) {
+function ItemModal({
+  activeModal,
+  onClose,
+  card,
+  handleDeleteClick,
+  currentUser,
+}) {
   const modalRef = useRef(null);
   const closeActiveModal = () => {
     onClose();
   };
+
+  const isOwn = card?.owner === currentUser?._id;
+  const itemDeleteButtonClassName = `modal__delete ${
+    isOwn ? "" : "modal__delete_hidden"
+  }`;
+
   useEscapeKey(!!activeModal, closeActiveModal, modalRef);
   return (
     <div
@@ -27,16 +39,15 @@ function ItemModal({ activeModal, onClose, card, handleDeleteClick }) {
             <p className="modal__weather">Weather: {card.weather}</p>
           </section>
           <section>
-            <button
-              onClick={() => {
-                console.log("Delete button clicked", card);
-                handleDeleteClick(card);
-              }}
-              type="button"
-              className="modal__delete"
-            >
-              Delete item
-            </button>
+            {isOwn && (
+              <button
+                onClick={() => handleDeleteClick(card)}
+                type="button"
+                className="modal__delete"
+              >
+                Delete item
+              </button>
+            )}
           </section>
         </div>
       </div>
