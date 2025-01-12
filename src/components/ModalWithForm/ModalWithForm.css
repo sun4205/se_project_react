@@ -131,7 +131,13 @@ input[type="radio"]:checked + label {
 }
 
 .modal__submit:hover {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: #000000;
+}
+
+.modal__submit_without-border:hover {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .modal__remove-item .modal__content-remove {
@@ -160,9 +166,8 @@ input[type="radio"]:checked + label {
   align-items: center;
 }
 
-.modal__submit_without-border{
+.modal__submit_without-border {
   border: none;
   background-color: white;
   color: #00000080;
-  
 }

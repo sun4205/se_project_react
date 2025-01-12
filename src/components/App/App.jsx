@@ -20,6 +20,8 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { getToken } from "../../utils/token";
+import * as auth from "../../utils/auth";
+
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -130,7 +132,7 @@ function App() {
       .getUserInfo(jwt)
       .then(({ username, email }) => {
         setIsLoggedIn(true);
-        setUserData({ username, email });
+        setCurrentUser({ username, email });
       })
       .catch(console.error);
   }, []);
@@ -204,7 +206,7 @@ function App() {
   console.log(currentTemperatureUnit);
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-      <div className="page">
+      <div className="page">     
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
@@ -225,7 +227,7 @@ function App() {
                   />
                 }
               />
-              {/* <Route
+              <Route
               path="/profile"
               element={
                 <Profile
@@ -234,7 +236,7 @@ function App() {
                   handleAddClick={handleAddClick}
                 />
               }
-            /> */}
+            /> 
             </Routes>
 
             <Footer />
@@ -244,7 +246,8 @@ function App() {
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             handleRegisterSubmit={handleRegisterSubmit}
-            buttonText={isLoading ? "Register..." : "Next"}
+            setActiveModal={setActiveModal}
+            buttonText={isLoading ? "Register..." : "Sign up"}
           />
           <ItemModal
             activeModal={activeModal}
@@ -263,6 +266,7 @@ function App() {
             closeActiveModal={closeActiveModal}
             buttonText="LogIn"
             handleLogin={handleLogin}
+            setActiveModal={setActiveModal}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

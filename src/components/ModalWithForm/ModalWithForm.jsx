@@ -5,6 +5,8 @@ function ModalWithForm({
   children,
   buttonText,
   title,
+  secondaryButtonText,
+  onSecondaryClick,
   activeModal,
   isOpen,
   handleCloseClick,
@@ -29,7 +31,15 @@ function ModalWithForm({
           <button type="submit" className="modal__submit">
             {buttonText} 
           </button>
-          <button type="submit" className="modal__submit modal__submit_without-border">or Login</button>
+          {secondaryButtonText && (
+              <button
+                type="button"
+                className="modal__submit modal__submit_without-border"
+                onClick={onSecondaryClick} 
+              >
+                {secondaryButtonText}
+              </button>
+            )}
           </div>
         </form>
       </div>

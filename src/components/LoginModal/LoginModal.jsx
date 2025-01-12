@@ -4,11 +4,13 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
 import useEscapeKey from "../../utils/useEscapeKey";
 
+
 const LoginModal = ({
   activeModal,
   closeActiveModal,  
-  buttonText,
+  buttonText ="Login",
   handleLogin,
+  setActiveModal,
 }) => {
   const { values, handleChange } = useForm({
     email: "",
@@ -26,6 +28,7 @@ const LoginModal = ({
       username: values.email, 
       password: values.password,
     });
+    closeActiveModal();
   };
 
   return (
@@ -33,8 +36,10 @@ const LoginModal = ({
       isOpen={activeModal === "login"} 
       title="Login" 
       buttonText={buttonText}
-      activeModal={activeModal}
+      secondaryButtonText="or Sign Up" 
+      onSecondaryClick={() => setActiveModal("register")}
       handleCloseClick={closeActiveModal}
+      activeModal={activeModal}
       onSubmit={handleSubmit}
       modalRef={modalRef}
     >

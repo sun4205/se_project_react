@@ -7,7 +7,9 @@ import useEscapeKey from "../../utils/useEscapeKey";
 const RegisterModal = ({
   activeModal,
   closeActiveModal, 
-  buttonText,
+  handleRegisterSubmit,
+  buttonText = "sign up",
+  setActiveModal,
 }) => {
   const { values, handleChange } = useForm({
     email: "",
@@ -23,6 +25,7 @@ const RegisterModal = ({
     e.preventDefault();
     console.log("Form submitted with values:", values);
     handleRegisterSubmit(values);
+    closeActiveModal();
   };
 
   return (
@@ -31,6 +34,8 @@ const RegisterModal = ({
       title="Sign up" 
       buttonText={buttonText}
       activeModal={activeModal}
+      secondaryButtonText="or Log In" 
+      onSecondaryClick={() => setActiveModal("login")} 
       handleCloseClick={closeActiveModal}
       onSubmit={handleSubmit}
       modalRef={modalRef}

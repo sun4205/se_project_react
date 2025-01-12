@@ -7,66 +7,74 @@ import { Link } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
-function Header({ openRegisterModal, weatherData, openLoginModal }) {
+function Header({
+  openRegisterModal,
+  openLoginModal,
+  handleLogout,
+  weatherData,
+}) {
   const { currentUser } = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
-
-  const getPlaceholderAvatar = (name) => {
-    const firstLetter = name ? name[0].toUpperCase() : "?";
-    return <div className="header__avatar-placeholder">{firstLetter}</div>;
+  const handleAddClick = () => {
+    
+    console.log("Add clothes clicked");
   };
+
   return (
     <header className="header">
       <Link to="/">
         <img className="header__logo" src={logo} alt="logo" />
       </Link>
-
       <p className="header__date-and-location">
         {currentDate}, {weatherData.city}
       </p>
-
       <div className="header__controls">
         <ToggleSwitch />
-        <button
-          onClick={openRegisterModal}
-          type="button"
-          className="header__add-clothes-btn"
-        >
-          Sign up
-        </button>
-      </div>
-
-      <div className="header__user-container">
         {!currentUser ? (
-          <>
+          <div className="header__auth-buttons">
+            <button
+              onClick={openRegisterModal}
+              type="button"
+              className="header__add-clothes-btn"
+            >
+              Sign Up
+            </button>
             <button
               onClick={openLoginModal}
               type="button"
               className="header__add-clothes-btn"
             >
-              Log in
+              Log In
             </button>
-            <img
-              className="header__avatar"
-              src={placeholder}
-              alt="Default avatar"
-            />
-          </>
+          </div>
         ) : (
           <>
-            <span className="header__user-name">{currentUser.name}</span>
-            {currentUser.avatar ? (
-              <img
-                className="header__avatar"
-                src={currentUser.avatar}
-                alt={currentUser.name}
-              />
-            ) : (
-              getPlaceholderAvatar(currentUser.name)
-            )}
+          <button
+          onClick={handleAddClick}
+          type="button"
+          className="header__add-clothes-btn"
+        >
+          +Add clothes
+        </button>
+      
+
+      <div className="header__user-container">
+        <Link to="/profile" className="header__link">
+          <p className="header__userName">{currentUser.name}</p>
+        </Link>
+
+        <img className="header__avatar" src={currentUser.avatarURL || avatar} alt={currentUser.name} />
+            {/* <button
+              onClick={handleLogout}
+              type="button"
+              className="header__add-clothes-btn"
+            >
+              Sign Out
+            </button> */}
+          </div>
           </>
         )}
       </div>
