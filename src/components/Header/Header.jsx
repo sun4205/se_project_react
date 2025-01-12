@@ -9,8 +9,7 @@ import { useContext } from "react";
 
 function Header({
   openRegisterModal,
-  openLoginModal,
-  handleLogout,
+  openLoginModal,  
   weatherData,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
