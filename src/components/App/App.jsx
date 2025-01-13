@@ -1,5 +1,11 @@
 import React, { useEffect, useState, useRef, act } from "react";
-import { Routes, Route } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import "./App.css";
@@ -12,16 +18,14 @@ import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import { getItems, addItem, removeItem } from "../../utils/api";
 import RemoveItem from "../RemoveItem/RemoveItem";
 import useEscapeKey from "../../utils/useEscapeKey";
-import { register, authorize } from "../../utils/auth";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { getToken } from "../../utils/token";
+import { setToken,getToken } from "../../utils/token";
 import * as auth from "../../utils/auth";
-
+import * as api from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -38,6 +42,10 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState({ username: "", avatarURL: "" });
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const openRemoveItemModal = (card) => {
     setSelectedCard(card);
@@ -148,7 +156,9 @@ function App() {
       })
       .then((userData) => {
         console.log("User logged in successfully:", userData);
+        setCurrentUser(userData);
         closeActiveModal();
+        navigate("/"); 
       })
       .catch((err) => console.error("Error during registration or login:", err))
       .finally(() => {
@@ -158,7 +168,6 @@ function App() {
       });
   };
 
-  
   const handleDeleteConfirm = () => {
     if (selectedCard) {
       setIsLoading(true);
@@ -206,7 +215,7 @@ function App() {
   console.log(currentTemperatureUnit);
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-      <div className="page">     
+      <div className="page">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
@@ -228,15 +237,15 @@ function App() {
                 }
               />
               <Route
-              path="/profile"
-              element={
-                <Profile
-                  onCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                  handleAddClick={handleAddClick}
-                />
-              }
-            /> 
+                path="/profile"
+                element={
+                  <Profile
+                    onCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                    handleAddClick={handleAddClick}
+                  />
+                }
+              />
             </Routes>
 
             <Footer />

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
+
 function Header({
   openRegisterModal,
   openLoginModal,  
@@ -17,6 +18,8 @@ function Header({
     month: "long",
     day: "numeric",
   });
+
+  
   const handleAddClick = () => {
     
     console.log("Add clothes clicked");
