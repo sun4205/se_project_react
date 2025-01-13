@@ -24,6 +24,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { setToken,getToken } from "../../utils/token";
+import { getItems } from "../../utils/api";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 
@@ -158,7 +159,7 @@ function App() {
         console.log("User logged in successfully:", userData);
         setCurrentUser(userData);
         closeActiveModal();
-        navigate("/"); 
+       
       })
       .catch((err) => console.error("Error during registration or login:", err))
       .finally(() => {
