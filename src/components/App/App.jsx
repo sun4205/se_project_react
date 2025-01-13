@@ -24,7 +24,8 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { setToken,getToken } from "../../utils/token";
-import { getItems } from "../../utils/api";
+import { getItems} from "../../utils/api";
+import { register } from "../../utils/auth";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 

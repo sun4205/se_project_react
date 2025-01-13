@@ -1,7 +1,7 @@
 export const BASE_URL = "http://localhost:3001";
 
 export const register = (name, avatar, email, password ) => {
-  return fetch(`${BASE_URL}/auth/signup`, {
+  return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
