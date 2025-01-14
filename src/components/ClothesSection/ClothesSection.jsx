@@ -4,7 +4,9 @@ import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
 
 const ClothesSection = ({ onCardClick, clothingItems, handleAddClick,currentUser }) => {
-  const userItems = clothingItems.filter((item)=>item.owner === currentUser._id);
+  const userItems = currentUser && currentUser._id
+    ? clothingItems.filter((item) => item.owner === currentUser._id)
+    : [];
   return (
     <div className="clothesSection">
       <section className="clothesSection__controls">

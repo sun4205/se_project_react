@@ -42,7 +42,7 @@ function App() {
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [isRemoveItemModalOpen, setIsRemoveItemModalOpen] = useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState({ username: "", avatarURL: "" });
 

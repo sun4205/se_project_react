@@ -68,8 +68,9 @@ function Header({
         <Link to="/profile" className="header__link">
           <p className="header__userName">{currentUser?.name || "Guest"}</p>
         </Link>
-
+        <Link to="/profile" className="header__link">
         <img className="header__avatar" src={currentUser.avatarURL || avatar} alt={currentUser.name} />
+        </Link>
             {/* <button
               onClick={handleLogout}
               type="button"
