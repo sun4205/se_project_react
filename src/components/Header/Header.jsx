@@ -14,6 +14,7 @@ function Header({
   weatherData,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
+  console.log("Current User:", currentUser);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -65,7 +66,7 @@ function Header({
 
       <div className="header__user-container">
         <Link to="/profile" className="header__link">
-          <p className="header__userName">{currentUser.name}</p>
+          <p className="header__userName">{currentUser?.name || "Guest"}</p>
         </Link>
 
         <img className="header__avatar" src={currentUser.avatarURL || avatar} alt={currentUser.name} />

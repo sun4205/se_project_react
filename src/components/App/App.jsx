@@ -138,8 +138,8 @@ function App() {
       return;
     }
 
-    api
-      .getUserInfo(token)
+    auth
+      .getUserInfo(jwt)
       .then(({ username, email }) => {
         setIsLoggedIn(true);
         setCurrentUser({ username, email });
