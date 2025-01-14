@@ -7,11 +7,11 @@ import { Link } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
-
 function Header({
   openRegisterModal,
-  openLoginModal,  
+  openLoginModal,
   weatherData,
+  handleAddClick,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
   console.log("Current User:", currentUser);
@@ -19,12 +19,6 @@ function Header({
     month: "long",
     day: "numeric",
   });
-
-  
-  const handleAddClick = () => {
-    
-    console.log("Add clothes clicked");
-  };
 
   return (
     <header className="header">
@@ -55,30 +49,35 @@ function Header({
           </div>
         ) : (
           <>
-          <button
-          onClick={handleAddClick}
-          type="button"
-          className="header__add-clothes-btn"
-        >
-          +Add clothes
-        </button>
-      
+            <button
+              onClick={handleAddClick}
+              type="button"
+              className="header__add-clothes-btn"
+            >
+              +Add clothes
+            </button>
 
-      <div className="header__user-container">
-        <Link to="/profile" className="header__link">
-          <p className="header__userName">{currentUser?.name || "Guest"}</p>
-        </Link>
-        <Link to="/profile" className="header__link">
-        <img className="header__avatar" src={currentUser.avatarURL || avatar} alt={currentUser.name} />
-        </Link>
-            {/* <button
+            <div className="header__user-container">
+              <Link to="/profile" className="header__link">
+                <p className="header__userName">
+                  {currentUser?.name || "Guest"}
+                </p>
+              </Link>
+              <Link to="/profile" className="header__link">
+                <img
+                  className="header__avatar"
+                  src={currentUser.avatarURL || avatar}
+                  alt={currentUser.name}
+                />
+              </Link>
+              {/* <button
               onClick={handleLogout}
               type="button"
               className="header__add-clothes-btn"
             >
               Sign Out
             </button> */}
-          </div>
+            </div>
           </>
         )}
       </div>

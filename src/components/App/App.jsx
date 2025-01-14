@@ -28,6 +28,7 @@ import { getItems} from "../../utils/api";
 import { register,getUserInfo } from "../../utils/auth";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
+import SideBar from "../SideBar/SideBar";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -69,6 +70,10 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
+  };
+
+  const changeCurrenUserData = () => {
+    setActiveModal("Edit-profile"); 
   };
 
   const openRegisterModal = () => {
@@ -226,6 +231,7 @@ function App() {
               openLoginModal={openLoginModal}
               openRegisterModal={openRegisterModal}
               weatherData={weatherData}
+              handleAddClick={handleAddClick}
             />
             <Routes>
               <Route
@@ -245,6 +251,7 @@ function App() {
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     handleAddClick={handleAddClick}
+                    changeCurrenUserData={changeCurrenUserData}
                   />
                 }
               />
@@ -260,6 +267,12 @@ function App() {
             setActiveModal={setActiveModal}
             buttonText={isLoading ? "Register..." : "Sign up"}
           />
+          <AddItemModal
+          activeModal={activeModal}
+          closeActiveModal={closeActiveModal}
+          handleAddItemSubmit={handleAddItemSubmit}
+          buttonText={isLoading ? "Saving..." : "add garment"}
+        />
           <ItemModal
             activeModal={activeModal}
             card={selectedCard}

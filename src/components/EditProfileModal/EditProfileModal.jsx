@@ -9,6 +9,7 @@ const EditProfileModal = ({
   buttonText,
   currentUser,
   updateUserData,
+  handleSubmit
 }) => {
   const { values, handleChange } = useForm({
     username: currentUser.username || "",
@@ -24,7 +25,7 @@ const EditProfileModal = ({
   useEscapeKey(!!activeModal, closeActiveModal, modalRef);
   return (
     <ModalWithForm
-      isOpen={activeModal === "edit-profile"}
+      isOpen={activeModal === "Edit-profile"}
       title="Edit Profile"
       buttonText={buttonText}
       activeModal={activeModal}
