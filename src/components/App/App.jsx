@@ -25,7 +25,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { setToken,getToken } from "../../utils/token";
 import { getItems} from "../../utils/api";
-import { register } from "../../utils/auth";
+import { register,getUserInfo } from "../../utils/auth";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 
@@ -120,8 +120,8 @@ function App() {
     auth
       .authorize(username, password)
       .then((data) => {
-        if (data.jwt) {
-          setToken(data.jwt);
+        if (data.token) {
+          setToken(data.token);
           setUserData(data.user);
           setIsLoggedIn(true);
           const redirectPath = location.state?.from?.pathname || "";
@@ -139,7 +139,7 @@ function App() {
     }
 
     api
-      .getUserInfo(jwt)
+      .getUserInfo(token)
       .then(({ username, email }) => {
         setIsLoggedIn(true);
         setCurrentUser({ username, email });
