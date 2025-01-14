@@ -9,7 +9,7 @@ const EditProfileModal = ({
   buttonText,
   currentUser,
   updateUserData,
-  handleSubmit
+ 
 }) => {
   const { values, handleChange } = useForm({
     username: currentUser.username || "",
