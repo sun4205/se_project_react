@@ -1,6 +1,12 @@
 .sideBar {
   display: flex;
+  flex-direction: column;
+  justify-content: left;
   width: 100%;
+}
+
+.sideBar__userInfo{
+  display: flex;
 }
 
 .sideBar__avata {
@@ -8,9 +14,33 @@
   height: 56px;
 }
 
+.sideBar__editProfile{
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+}
+
 .sideBar__userName {
   font-weight: 700;
   font-size: 20px;
   line-height: 24.8px;
   margin-left: 16px;
+}
+
+.sideBar__changeUserData{
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.8px;  
+  border: none;
+  margin-top: 24px;
+}
+
+.sideBar__logout{
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.8px; 
+  border: none;
+  margin-top: 8px;
 }
