@@ -4,6 +4,8 @@ import { defaultClothingItems } from "../../utils/constants";
 import "./Profile.css";
 
 const Profile = ({ onCardClick, clothingItems, handleAddClick, changeCurrentUserData}) => {
+
+  
   return (
     <div className="profile">
       <section className="profile__sideBar">

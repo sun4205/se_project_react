@@ -37,4 +37,26 @@ const removeItem = (_id) => {
     },
   });
 };
-export { getItems, addItem, removeItem };
+
+const updateUserData = (username, avatarUrl) => {
+ return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ username, avatarUrl }),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`Error: ${res.status}`);
+      }
+      return res.json();
+    })
+    .then((data) => {
+      setCurrentUser(data); 
+      setActiveModal(""); 
+    })
+    .catch((error) => console.error("Failed to update user data:", error));
+};
+
+export { getItems, addItem, removeItem, updateUserData };

@@ -29,6 +29,7 @@ import { register,getUserInfo } from "../../utils/auth";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 import SideBar from "../SideBar/SideBar";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -220,6 +221,8 @@ function App() {
       .catch(console.error);
   }, []);
   console.log(currentTemperatureUnit);
+
+  
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="page">
