@@ -153,6 +153,12 @@ function App() {
       .catch(console.error);
   }, []);
 
+  const handleLogOut = () => {
+    removeToken(); 
+    setIsLoggedIn(false); 
+  };
+  
+
   const handleRegisterSubmit = (values) => {
     console.log("handleRegisterSubmit called with values:", values);
     setIsLoading(true);
@@ -255,6 +261,7 @@ function App() {
                     clothingItems={clothingItems}
                     handleAddClick={handleAddClick}
                     changeCurrenUserData={changeCurrenUserData}
+                    handleSignOut={handleSignOut}
                   />
                 }
               />
