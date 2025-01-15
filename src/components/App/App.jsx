@@ -24,7 +24,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { setToken, getToken } from "../../utils/token";
-import { getItems, updateUserData } from "../../utils/api";
+import { getItems, addItem, updateUserData } from "../../utils/api";
 import { register, getUserInfo } from "../../utils/auth";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
@@ -131,6 +131,8 @@ function App() {
           setToken(data.token);
           setUserData(data.user);
           setIsLoggedIn(true);
+
+          setCurrentUser({ ...data.user, _id: data.user._id });
           const redirectPath = location.state?.from?.pathname || "";
           navigate(redirectPath);
         }
@@ -139,6 +141,7 @@ function App() {
   };
 
   useEffect(() => {
+    console.log('Current User:', currentUser);
     const jwt = getToken();
 
     if (!jwt) {
@@ -147,9 +150,9 @@ function App() {
 
     auth
       .getUserInfo(jwt)
-      .then(({ username, email }) => {
+      .then(({ username, email, _id }) => {
         setIsLoggedIn(true);
-        setCurrentUser({ username, email });
+        setCurrentUser({ username, email, _id });
       })
       .catch(console.error);
   }, []);
