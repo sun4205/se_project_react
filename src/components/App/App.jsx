@@ -281,12 +281,11 @@ function App() {
               <Route
                 path="/signin"
                 element={
-                  <LoginModal
-                    activeModal={activeModal}
-                    closeActiveModal={closeActiveModal}
-                    buttonText="LogIn"
-                    handleLogin={handleLogin}
-                    setActiveModal={setActiveModal}
+                  <Header
+                    openLoginModal={openLoginModal}
+                    openRegisterModal={openRegisterModal}
+                    weatherData={weatherData}
+                    handleAddClick={handleAddClick}
                   />
                 }
               />
