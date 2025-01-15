@@ -23,7 +23,7 @@ import useEscapeKey from "../../utils/useEscapeKey";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { setToken, getToken } from "../../utils/token";
+import { setToken, getToken, removeToken } from "../../utils/token";
 import { getItems, addItem, updateUserData } from "../../utils/api";
 import { register, getUserInfo } from "../../utils/auth";
 import * as auth from "../../utils/auth";
@@ -75,7 +75,7 @@ function App() {
 
   const changeCurrentUserData = () => {
     setActiveModal("Edit-profile");
-    console.log(activeModal);
+    console.log("clicked");
   };
 
   const openRegisterModal = () => {
@@ -158,8 +158,10 @@ function App() {
   }, []);
 
   const handleLogOut = () => {
+    console.log("Log Out button clicked.");
     removeToken();
     setIsLoggedIn(false);
+    console.log("User logged out successfully.");
   };
 
   const handleRegisterSubmit = (values) => {
@@ -283,7 +285,7 @@ function App() {
           <EditProfileModal
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
-            buttonText="Save"
+            buttonText="Save changes"
             currentUser={currentUser}
             updateUserData={updateUserData}
           />

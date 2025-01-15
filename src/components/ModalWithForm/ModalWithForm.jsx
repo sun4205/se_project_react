@@ -12,10 +12,11 @@ function ModalWithForm({
   handleCloseClick,
   onSubmit,
   modalRef,
+  customClass,
 }) {
   console.log("Modal Button Text:", buttonText);
   return (
-    <div className={`modal  ${isOpen ? "modal_opened" : ""}`} ref={modalRef}>
+    <div className={`modal  ${isOpen ? "modal_opened" : ""} ${customClass || ""}`} ref={modalRef}>
       <div className="modal__content">
         <h2 className="modal__title">{title}</h2>
         <button
@@ -28,7 +29,9 @@ function ModalWithForm({
         <form onSubmit={onSubmit} className="modal__form">
           {children}
           <div className="modal__button-container">
-          <button type="submit" className="modal__submit">
+          <button type="submit" className={`modal__submit ${
+                customClass === "edit-profile-modal" ? "modal__submit_black" : ""
+              }`}>
             {buttonText} 
           </button>
           {secondaryButtonText && (

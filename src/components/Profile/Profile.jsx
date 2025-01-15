@@ -9,7 +9,7 @@ const Profile = ({ onCardClick, currentUser, clothingItems, handleAddClick, chan
   return (
     <div className="profile">
       <section className="profile__sideBar">
-        <SideBar changeCurrenUserData={changeCurrentUserData} handleLogOut={handleLogOut}/>
+        <SideBar changeCurrentUserData={changeCurrentUserData} handleLogOut={handleLogOut}/>
       </section>
       <section className="profile__clothing-items">
         <ClothesSection

@@ -31,14 +31,15 @@ const EditProfileModal = ({
       activeModal={activeModal}
       handleCloseClick={closeActiveModal}
       onSubmit={handleSubmit}
+      customClass="edit-profile-modal" 
     >
       <label htmlFor="username" className="modal__label">
-        Username
+        Name
         <input
           type="text"
           id="username"
           name="username"
-          placeholder="Username"
+          placeholder="Name"
           value={values.username}
           onChange={handleChange}
           className="modal__input"
@@ -46,12 +47,12 @@ const EditProfileModal = ({
       </label>
 
       <label htmlFor="avatarUrl" className="modal__label">
-        Avatar URL
+        Avatar 
         <input
           type="text"
           id="avatarUrl"
           name="avatarUrl"
-          placeholder="Avatar URL"
+          placeholder="Avatar"
           value={values.avatarUrl}
           onChange={handleChange}
           className="modal__input"

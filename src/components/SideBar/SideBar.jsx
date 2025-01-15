@@ -3,7 +3,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import avatar from "../../assets/avatar.svg";
 import "./SideBar.css";
 
-const SideBar = ({ handleLogout, changeCurrentUserData }) => {
+const SideBar = ({ handleLogOut, changeCurrentUserData }) => {
   const { currentUser } = useContext(CurrentUserContext);
   return (
     <div className="sideBar">
@@ -15,7 +15,7 @@ const SideBar = ({ handleLogout, changeCurrentUserData }) => {
       <button className="sideBar__changeUserData" onClick={changeCurrentUserData} type="button">
         Change Profile Data
       </button>
-      <button className = "sideBar__logout" onClick={handleLogout} type="button">
+      <button className = "sideBar__logout" onClick={handleLogOut} type="button">
         Log Out
       </button>
       </div>

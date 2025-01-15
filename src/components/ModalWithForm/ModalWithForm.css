@@ -166,6 +166,11 @@ input[type="radio"]:checked + label {
   align-items: center;
 }
 
+.modal__submit_black {
+  background-color: #000000;
+  color: white;
+}
+
 .modal__submit_without-border {
   border: none;
   background-color: white;
