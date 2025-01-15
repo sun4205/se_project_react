@@ -261,6 +261,7 @@ function App() {
                     changeCurrentUserData={changeCurrentUserData}
                     handleLogOut={handleLogOut}
                     updateUserData={updateUserData}
+                    currentUser={currentUser} 
                   />
                 }
               />
