@@ -19,6 +19,7 @@ const addItem = ({ name, weather, imageUrl }) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
     body: JSON.stringify({
       name,
