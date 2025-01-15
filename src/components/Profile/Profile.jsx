@@ -3,13 +3,13 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 import { defaultClothingItems } from "../../utils/constants";
 import "./Profile.css";
 
-const Profile = ({ onCardClick, clothingItems, handleAddClick, changeCurrentUserData, handleLogout}) => {
+const Profile = ({ onCardClick, clothingItems, handleAddClick, changeCurrentUserData, handleLogOut}) => {
 
   
   return (
     <div className="profile">
       <section className="profile__sideBar">
-        <SideBar changeCurrenUserData={changeCurrenUserData} handleLogOut={handleLogOut}/>
+        <SideBar changeCurrenUserData={changeCurrentUserData} handleLogOut={handleLogOut}/>
       </section>
       <section className="profile__clothing-items">
         <ClothesSection

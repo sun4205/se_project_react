@@ -23,9 +23,9 @@ import useEscapeKey from "../../utils/useEscapeKey";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { setToken,getToken } from "../../utils/token";
-import { getItems} from "../../utils/api";
-import { register,getUserInfo } from "../../utils/auth";
+import { setToken, getToken } from "../../utils/token";
+import { getItems, updateUserData } from "../../utils/api";
+import { register, getUserInfo } from "../../utils/auth";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 import SideBar from "../SideBar/SideBar";
@@ -73,8 +73,9 @@ function App() {
     setActiveModal("add-garment");
   };
 
-  const changeCurrenUserData = () => {
-    setActiveModal("Edit-profile"); 
+  const changeCurrentUserData = () => {
+    setActiveModal("Edit-profile");
+    console.log(activeModal);
   };
 
   const openRegisterModal = () => {
@@ -154,10 +155,9 @@ function App() {
   }, []);
 
   const handleLogOut = () => {
-    removeToken(); 
-    setIsLoggedIn(false); 
+    removeToken();
+    setIsLoggedIn(false);
   };
-  
 
   const handleRegisterSubmit = (values) => {
     console.log("handleRegisterSubmit called with values:", values);
@@ -172,7 +172,6 @@ function App() {
         console.log("User logged in successfully:", userData);
         setCurrentUser(userData);
         closeActiveModal();
-       
       })
       .catch((err) => console.error("Error during registration or login:", err))
       .finally(() => {
@@ -228,7 +227,6 @@ function App() {
   }, []);
   console.log(currentTemperatureUnit);
 
-  
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="page">
@@ -260,8 +258,9 @@ function App() {
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     handleAddClick={handleAddClick}
-                    changeCurrenUserData={changeCurrenUserData}
-                    handleSignOut={handleSignOut}
+                    changeCurrentUserData={changeCurrentUserData}
+                    handleLogOut={handleLogOut}
+                    updateUserData={updateUserData}
                   />
                 }
               />
@@ -277,12 +276,20 @@ function App() {
             setActiveModal={setActiveModal}
             buttonText={isLoading ? "Register..." : "Sign up"}
           />
+          <EditProfileModal
+            activeModal={activeModal}
+            closeActiveModal={closeActiveModal}
+            buttonText="Save"
+            currentUser={currentUser}
+            updateUserData={updateUserData}
+          />
+
           <AddItemModal
-          activeModal={activeModal}
-          closeActiveModal={closeActiveModal}
-          handleAddItemSubmit={handleAddItemSubmit}
-          buttonText={isLoading ? "Saving..." : "add garment"}
-        />
+            activeModal={activeModal}
+            closeActiveModal={closeActiveModal}
+            handleAddItemSubmit={handleAddItemSubmit}
+            buttonText={isLoading ? "Saving..." : "add garment"}
+          />
           <ItemModal
             activeModal={activeModal}
             card={selectedCard}
