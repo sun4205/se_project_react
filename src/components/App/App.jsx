@@ -24,7 +24,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { setToken, getToken, removeToken } from "../../utils/token";
-import { getItems, addItem, updateUserData } from "../../utils/api";
+import { getItems, addItem, updateUserData,addCardLike,removeCardLike } from "../../utils/api";
 import { register, getUserInfo } from "../../utils/auth";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
@@ -164,6 +164,32 @@ function App() {
     console.log("User logged out successfully.");
   };
 
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    
+    !isLiked
+      ? 
+        api
+          
+          .addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : 
+        api
+          
+          .removeCardLike(id, token) 
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
   const handleRegisterSubmit = (values) => {
     console.log("handleRegisterSubmit called with values:", values);
     setIsLoading(true);
@@ -253,6 +279,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike} 
                   />
                 }
               />
@@ -301,6 +328,8 @@ function App() {
             card={selectedCard}
             onClose={closeActiveModal}
             handleDeleteClick={handleDeleteClick}
+            onCardLike={handleCardLike} 
+
           />
           <RemoveItem
             activeModal={isRemoveItemModalOpen ? "remove-item" : ""}

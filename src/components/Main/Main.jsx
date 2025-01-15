@@ -6,14 +6,14 @@ import { defaultClothingItems } from "../../utils/constants";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import ClothesSection from "../ClothesSection/ClothesSection";
-import { getItems } from "../../utils/api";
+import {  getItems } from "../../utils/api";
 
-function Main({ clothingItems, weatherData, handleCardClick }) {
+function Main({ clothingItems, weatherData, handleCardClick, onCardLike }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   console.log(currentTemperatureUnit);
   console.log("Weather data in Main:", weatherData);
   const filteredItems = clothingItems.filter(
-    (item) => item.weather === weatherData.type
+    (item) => item?.weather === weatherData.type
   );
   return (
     <main className="main">
@@ -35,6 +35,7 @@ function Main({ clothingItems, weatherData, handleCardClick }) {
                 key={item._id}
                 item={item}
                 onCardClick={handleCardClick}
+                onCardLike={onCardLike}
               />
             ))
           ) : (

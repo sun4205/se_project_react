@@ -60,4 +60,31 @@ const updateUserData = (username, avatarUrl) => {
     .catch((error) => console.error("Failed to update user data:", error));
 };
 
-export { getItems, addItem, removeItem, updateUserData };
+const addCardLike = (id, token) => {
+  return fetch(`${baseUrl}/items/${_id}/like`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+
+};
+
+const removeCardLike = (id, token) => {
+  return fetch(`${baseUrl}/items/${_id}/like`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+
+
+};
+
+export { getItems, addItem, removeItem, updateUserData,addCardLike, removeCardLike };
