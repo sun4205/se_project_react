@@ -41,8 +41,7 @@
 }
 
 .card__like-btn {
-  background-image: url("/src/assets/Likebutton.svg");
-  
+  background-image: url("/src/assets/Likebutton.svg");  
   background-size: cover;
   background-repeat: no-repeat;
   width: 18px;

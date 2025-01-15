@@ -24,7 +24,13 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { setToken, getToken, removeToken } from "../../utils/token";
-import { getItems, addItem, updateUserData,addCardLike,removeCardLike } from "../../utils/api";
+import {
+  getItems,
+  addItem,
+  updateUserData,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
 import { register, getUserInfo } from "../../utils/auth";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
@@ -141,7 +147,7 @@ function App() {
   };
 
   useEffect(() => {
-    console.log('Current User:', currentUser);
+    console.log("Current User:", currentUser);
     const jwt = getToken();
 
     if (!jwt) {
@@ -159,18 +165,19 @@ function App() {
 
   const handleLogOut = () => {
     console.log("Log Out button clicked.");
+    navigate("/signin");
     removeToken();
     setIsLoggedIn(false);
+    setActiveModal("signin");
     console.log("User logged out successfully.");
   };
 
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
-    
+
     !isLiked
-      ? 
-        api
-          
+      ? api
+
           .addCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
@@ -178,10 +185,9 @@ function App() {
             );
           })
           .catch((err) => console.log(err))
-      : 
-        api
-          
-          .removeCardLike(id, token) 
+      : api
+
+          .removeCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
@@ -273,13 +279,25 @@ function App() {
             />
             <Routes>
               <Route
+                path="/signin"
+                element={
+                  <LoginModal
+                    activeModal={activeModal}
+                    closeActiveModal={closeActiveModal}
+                    buttonText="LogIn"
+                    handleLogin={handleLogin}
+                    setActiveModal={setActiveModal}
+                  />
+                }
+              />
+              <Route
                 path="/"
                 element={
                   <Main
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
-                    onCardLike={handleCardLike} 
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -293,7 +311,7 @@ function App() {
                     changeCurrentUserData={changeCurrentUserData}
                     handleLogOut={handleLogOut}
                     updateUserData={updateUserData}
-                    currentUser={currentUser} 
+                    currentUser={currentUser}
                   />
                 }
               />
@@ -328,8 +346,7 @@ function App() {
             card={selectedCard}
             onClose={closeActiveModal}
             handleDeleteClick={handleDeleteClick}
-            onCardLike={handleCardLike} 
-
+            onCardLike={handleCardLike}
           />
           <RemoveItem
             activeModal={isRemoveItemModalOpen ? "remove-item" : ""}
@@ -337,13 +354,13 @@ function App() {
             onConfirm={handleDeleteConfirm}
             buttonText={isLoading ? "Deleting..." : "Yes, delete item"}
           />
-          <LoginModal
+          {/* <LoginModal
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             buttonText="LogIn"
             handleLogin={handleLogin}
             setActiveModal={setActiveModal}
-          />
+          /> */}
         </CurrentTemperatureUnitContext.Provider>
       </div>
     </CurrentUserContext.Provider>
