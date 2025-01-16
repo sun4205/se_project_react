@@ -19,7 +19,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
       newLikes.push(currentUser._id);
     }
 
-    onCardLike({ id: item._id, isLiked: !isLiked });
+    onCardLike({ id: item._id, isLiked: isLiked });
   };
 
   const handleCardClick = () => {

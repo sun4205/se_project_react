@@ -41,13 +41,13 @@ const removeItem = (_id) => {
 
 const updateUserData = (username, avatarUrl) => {
   const token = localStorage.getItem("jwt"); 
- return fetch(`${baseUrl}/me`, {
+ return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`,
     },
-    body: JSON.stringify({ username, avatarUrl }),
+    body: JSON.stringify({ name: username, avatar: avatarUrl }),
   })
     .then((res) => {
       if (!res.ok) {
