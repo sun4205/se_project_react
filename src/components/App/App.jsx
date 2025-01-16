@@ -30,6 +30,7 @@ import {
   updateUserData,
   addCardLike,
   removeCardLike,
+  removeItem
 } from "../../utils/api";
 import { register, getUserInfo } from "../../utils/auth";
 import * as auth from "../../utils/auth";

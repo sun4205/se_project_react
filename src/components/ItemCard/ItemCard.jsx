@@ -7,7 +7,9 @@ function ItemCard({ item, onCardClick, onCardLike }) {
   console.log("Item in ItemCard:", item);
   console.log("Image URL:", item.imageUrl);
 
-  const isLiked = item.likes.some((id) => id === currentUser._id);
+  const isLiked = currentUser
+    ? item.likes.some((id) => id === currentUser._id)
+    : false;
   const itemLikeButtonClassName = `card__like-btn ${isLiked ? "liked" : ""}`;
 
   const handleLike = () => {
@@ -49,5 +51,3 @@ function ItemCard({ item, onCardClick, onCardLike }) {
 }
 
 export default ItemCard;
-
-

@@ -30,10 +30,12 @@ const addItem = ({ name, weather, imageUrl }) => {
 };
 
 const removeItem = (_id) => {
+  const token = localStorage.getItem("jwt"); 
   console.log("Deleting item with _id:", _id);
   return request(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
     headers: {
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
   });
