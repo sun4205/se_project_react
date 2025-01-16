@@ -3,7 +3,7 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 import { defaultClothingItems } from "../../utils/constants";
 import "./Profile.css";
 
-const Profile = ({ onCardClick, currentUser, clothingItems, handleAddClick, changeCurrentUserData, handleLogOut}) => {
+const Profile = ({ onCardLike, onCardClick, currentUser, clothingItems, handleAddClick, changeCurrentUserData, handleLogOut}) => {
 
   
   return (
@@ -14,6 +14,7 @@ const Profile = ({ onCardClick, currentUser, clothingItems, handleAddClick, chan
       <section className="profile__clothing-items">
         <ClothesSection
           onCardClick={onCardClick}
+          onCardLike={onCardLike}
           clothingItems={clothingItems}
           currentUser={currentUser} 
           handleAddClick={handleAddClick}

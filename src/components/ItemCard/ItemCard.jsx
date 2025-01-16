@@ -20,6 +20,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
     }
 
     onCardLike({ id: item._id, isLiked: isLiked });
+    console.log("onCardLike in ItemCard:", onCardLike);
   };
 
   const handleCardClick = () => {
@@ -48,3 +49,5 @@ function ItemCard({ item, onCardClick, onCardLike }) {
 }
 
 export default ItemCard;
+
+

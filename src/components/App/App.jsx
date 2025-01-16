@@ -293,6 +293,7 @@ function App() {
                 path="/profile"
                 element={
                   <Profile
+                  onCardLike={handleCardLike}
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     handleAddClick={handleAddClick}
