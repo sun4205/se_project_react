@@ -61,8 +61,8 @@ const updateUserData = (username, avatarUrl) => {
 };
 
 const addCardLike = (id, token) => {
-  return fetch(`${baseUrl}/items/${_id}/like`, {
-    method: 'POST',
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: 'PUT',
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const addCardLike = (id, token) => {
 };
 
 const removeCardLike = (id, token) => {
-  return fetch(`${baseUrl}/items/${_id}/like`, {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${token}`,

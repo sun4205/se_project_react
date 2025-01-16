@@ -55,3 +55,7 @@
   align-items: center;
  
 }
+
+.card__like-btn.liked {
+  background-image: url("/src/assets/likebtnClick.svg");
+}

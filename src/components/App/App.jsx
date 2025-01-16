@@ -342,13 +342,13 @@ function App() {
             onConfirm={handleDeleteConfirm}
             buttonText={isLoading ? "Deleting..." : "Yes, delete item"}
           />
-           <LoginModal
+          <LoginModal
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             buttonText="LogIn"
             handleLogin={handleLogin}
             setActiveModal={setActiveModal}
-          /> 
+          />
         </CurrentTemperatureUnitContext.Provider>
       </div>
     </CurrentUserContext.Provider>
