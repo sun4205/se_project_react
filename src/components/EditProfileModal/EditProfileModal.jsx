@@ -12,8 +12,8 @@ const EditProfileModal = ({
  
 }) => {
   const { values, handleChange } = useForm({
-    username: currentUser.username || "",
-    avatarUrl: currentUser.avatarUrl || "",
+    username: currentUser?.username || "",
+    avatarUrl: currentUser?.avatarUrl || "",
   });
 
   const handleSubmit = (e) => {

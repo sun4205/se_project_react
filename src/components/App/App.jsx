@@ -50,7 +50,7 @@ function App() {
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [isRemoveItemModalOpen, setIsRemoveItemModalOpen] = useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState({ username: "", avatarURL: "" });
 
@@ -125,6 +125,16 @@ function App() {
       });
   };
 
+  function getUserInformation(token) {
+    return auth
+      .getUserInfo(token)
+      .then((user) => {
+        setIsLoggedIn(true);
+        setCurrentUser(user);
+      })
+      .catch(console.error);
+  }
+
   const handleLogin = ({ username, password }) => {
     if (!username || !password) {
       return;
@@ -135,12 +145,10 @@ function App() {
       .then((data) => {
         if (data.token) {
           setToken(data.token);
-          setUserData(data.user);
-          setIsLoggedIn(true);
-
-          setCurrentUser({ ...data.user, _id: data.user._id });
-          const redirectPath = location.state?.from?.pathname || "";
-          navigate(redirectPath);
+          getUserInformation(data.token).then(() => {
+            const redirectPath = location.state?.from?.pathname || "";
+            navigate(redirectPath);
+          });
         }
       })
       .catch(console.error);
@@ -153,22 +161,14 @@ function App() {
     if (!jwt) {
       return;
     }
-
-    auth
-      .getUserInfo(jwt)
-      .then(({ username, email, _id }) => {
-        setIsLoggedIn(true);
-        setCurrentUser({ username, email, _id });
-      })
-      .catch(console.error);
+    getUserInformation(jwt);
   }, []);
 
   const handleLogOut = () => {
     console.log("Log Out button clicked.");
-    navigate("/signin");
-    removeToken();
     setIsLoggedIn(false);
-    setActiveModal("signin");
+    setCurrentUser(null);
+    navigate("/");
     console.log("User logged out successfully.");
   };
 
@@ -279,17 +279,6 @@ function App() {
             />
             <Routes>
               <Route
-                path="/signin"
-                element={
-                  <Header
-                    openLoginModal={openLoginModal}
-                    openRegisterModal={openRegisterModal}
-                    weatherData={weatherData}
-                    handleAddClick={handleAddClick}
-                  />
-                }
-              />
-              <Route
                 path="/"
                 element={
                   <Main
@@ -353,13 +342,13 @@ function App() {
             onConfirm={handleDeleteConfirm}
             buttonText={isLoading ? "Deleting..." : "Yes, delete item"}
           />
-          {/* <LoginModal
+           <LoginModal
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             buttonText="LogIn"
             handleLogin={handleLogin}
             setActiveModal={setActiveModal}
-          /> */}
+          /> 
         </CurrentTemperatureUnitContext.Provider>
       </div>
     </CurrentUserContext.Provider>
