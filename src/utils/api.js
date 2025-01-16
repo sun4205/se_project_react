@@ -40,10 +40,12 @@ const removeItem = (_id) => {
 };
 
 const updateUserData = (username, avatarUrl) => {
- return fetch(`${baseUrl}/users/me`, {
+  const token = localStorage.getItem("jwt"); 
+ return fetch(`${baseUrl}/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
     },
     body: JSON.stringify({ username, avatarUrl }),
   })
@@ -61,6 +63,7 @@ const updateUserData = (username, avatarUrl) => {
 };
 
 const addCardLike = (id, token) => {
+  console.log("Card ID:", id);
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: 'PUT',
     headers: {

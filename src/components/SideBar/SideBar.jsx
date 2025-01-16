@@ -5,11 +5,14 @@ import "./SideBar.css";
 
 const SideBar = ({ handleLogOut, changeCurrentUserData }) => {
   const { currentUser } = useContext(CurrentUserContext);
+
+  const avatarURL = currentUser?.avatarURL || avatar; 
+  const userName = currentUser?.name || "User Avatar"; 
   return (
     <div className="sideBar">
       <div className="sideBar__userInfo">
-      <img className="sideBar__avatar" src={currentUser.avatarURL || avatar}  alt={currentUser.name || "User Avatar"} />
-      <p className="sideBar__userName">{currentUser.name || "User Avatar"}</p>
+      <img className="sideBar__avatar" src={avatarURL}  alt={userName} />
+      <p className="sideBar__userName">{userName}</p>
       </div>
       <div className = "sideBar__editProfile">
       <button className="sideBar__changeUserData" onClick={changeCurrentUserData} type="button">
