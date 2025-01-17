@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import avatar from "../../assets/avatar.svg";
+import avatarPlaceholder from "../../assets/avatar.svg";
 import "./SideBar.css";
 import { initialsPlaceholder } from "../../utils/inicialPlaceHolder";
 
 const SideBar = ({ handleLogOut, changeCurrentUserData }) => {
   const { currentUser } = useContext(CurrentUserContext);
 
-  const avatar = currentUser?.avatar || avatar;
+  const avatar = currentUser?.avatar || avatarPlaceholder;
   const username = currentUser?.name || "User Avatar"
   
   

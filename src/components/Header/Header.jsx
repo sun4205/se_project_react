@@ -1,7 +1,6 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.svg";
-import placeholder from "../../assets/placeholder.svg";
+import avatarPlaceholder from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -16,7 +15,7 @@ function Header({
 }) {
   const { currentUser } = useContext(CurrentUserContext);
 
-  const avatar = currentUser?.avatar || avatar;
+  const avatar = currentUser?.avatar || avatarPlaceholder;
   const username = currentUser?.name || "User Avatar";
   console.log("Current User:", currentUser);
   const currentDate = new Date().toLocaleString("default", {
