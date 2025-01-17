@@ -83,7 +83,7 @@ function App() {
   const changeCurrentUserData = (username, avatarUrl) => {
     setActiveModal("Edit-profile");
     console.log("clicked");
-    updateUserData(username, avatarUrl);
+   
   };
 
   const openRegisterModal = () => {
