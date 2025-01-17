@@ -66,7 +66,7 @@ function Header({
               <Link to="/profile" className="header__link">
                 <img
                   className="header__avatar"
-                  src={currentUser.avatarURL || avatar}
+                  src={currentUser.avatarUrl || avatar}
                   alt={currentUser.name}
                 />
               </Link>

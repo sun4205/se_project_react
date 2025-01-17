@@ -53,7 +53,7 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({ username: "", avatarURL: "" });
+  const [userData, setUserData] = useState({ username: "", avatarUrl: "" });
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -214,7 +214,7 @@ function App() {
     setIsLoading(true);
 
     auth;
-    register(values.name, values.avatarURL, values.email, values.password)
+    register(values.name, values.avatarUrl, values.email, values.password)
       .then(() => {
         console.log("Registration successful, signing in...");
         return auth.authorize(values.email, values.password);
