@@ -8,6 +8,8 @@ const SideBar = ({ handleLogOut, changeCurrentUserData }) => {
 
   const avatarURL = currentUser?.avatarURL || avatar; 
   const userName = currentUser?.name || "User Avatar"; 
+  console.log("avatarURL:", avatarURL); 
+console.log("currentUser.avatarURL:", currentUser?.avatarURL); 
   return (
     <div className="sideBar">
       <div className="sideBar__userInfo">

@@ -25,6 +25,7 @@ const EditProfileModal = ({
   
   const modalRef = useRef(null);
   useEscapeKey(!!activeModal, closeActiveModal, modalRef);
+  console.log("activeModal:", activeModal);
   return (
     <ModalWithForm
       isOpen={activeModal === "Edit-profile"}
@@ -34,6 +35,7 @@ const EditProfileModal = ({
       handleCloseClick={closeActiveModal}
       onSubmit={handleSubmit}
       customClass="edit-profile-modal" 
+      modalRef={modalRef}
     >
       <label htmlFor="username" className="modal__label">
         Name
