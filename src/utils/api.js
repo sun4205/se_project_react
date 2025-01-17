@@ -42,6 +42,7 @@ const removeItem = (_id) => {
 };
 
 const updateUserData = (username, avatarUrl) => {
+  console.log("Updating user data:", username, avatarUrl);
   const token = localStorage.getItem("jwt"); 
  return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",

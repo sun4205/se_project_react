@@ -30,7 +30,7 @@ import {
   updateUserData,
   addCardLike,
   removeCardLike,
-  removeItem
+  removeItem,
 } from "../../utils/api";
 import { register, getUserInfo } from "../../utils/auth";
 import * as auth from "../../utils/auth";
@@ -80,9 +80,10 @@ function App() {
     setActiveModal("add-garment");
   };
 
-  const changeCurrentUserData = () => {
+  const changeCurrentUserData = (username, avatarUrl) => {
     setActiveModal("Edit-profile");
     console.log("clicked");
+    updateUserData(username, avatarUrl);
   };
 
   const openRegisterModal = () => {
@@ -201,10 +202,11 @@ function App() {
     console.log("handleRegisterSubmit called with values:", values);
     setIsLoading(true);
 
+    auth;
     register(values.name, values.avatarURL, values.email, values.password)
       .then(() => {
         console.log("Registration successful, signing in...");
-        return authorize(values.email, values.password);
+        return auth.authorize(values.email, values.password);
       })
       .then((userData) => {
         console.log("User logged in successfully:", userData);
@@ -294,7 +296,7 @@ function App() {
                 path="/profile"
                 element={
                   <Profile
-                  onCardLike={handleCardLike}
+                    onCardLike={handleCardLike}
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     handleAddClick={handleAddClick}
@@ -322,7 +324,8 @@ function App() {
             closeActiveModal={closeActiveModal}
             buttonText="Save changes"
             currentUser={currentUser}
-            updateUserData={updateUserData}
+            updateUserData={updateUserData}          
+            
           />
 
           <AddItemModal
@@ -337,6 +340,7 @@ function App() {
             onClose={closeActiveModal}
             handleDeleteClick={handleDeleteClick}
             onCardLike={handleCardLike}
+            currentUser={currentUser}
           />
           <RemoveItem
             activeModal={isRemoveItemModalOpen ? "remove-item" : ""}
