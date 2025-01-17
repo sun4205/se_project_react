@@ -62,6 +62,7 @@ function Header({
 
             <div className="header__user-container">
               <Link to="/profile" className="header__link">
+              <p className="header__userName">{username}</p>
               {currentUser.avatar ? (
             <img className="header__avatar" src={avatar} alt={username} />
           ) : (
@@ -72,6 +73,7 @@ function Header({
               </Link>
              
             </div>
+            
           </>
         )}
       </div>
