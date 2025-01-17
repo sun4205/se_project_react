@@ -17,9 +17,20 @@ const EditProfileModal = ({
     username: currentUser?.username || "",
     avatar: currentUser?.avatar || "",
   });
-
+const isValidUrl = (url) => {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+};
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!values.avatar || !isValidUrl(values.avatar)) {
+      console.warn("Invalid or empty avatar URL. Skipping avatar update.");
+      values.avatar = ""; 
+    }
     updateUserData(values.username, values.avatar,setCurrentUser,setActiveModal);
   };
   

@@ -53,7 +53,7 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({ username: "", avatarUrl: "" });
+  const [userData, setUserData] = useState({ username: "", avatar: "" });
 
   const navigate = useNavigate();
   const location = useLocation();

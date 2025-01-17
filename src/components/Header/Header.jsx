@@ -14,14 +14,25 @@ function Header({
   handleAddClick,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
+  const isValidUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  };
 
-  const avatar = currentUser?.avatar || avatarPlaceholder;
+  const avatar = isValidUrl(currentUser?.avatar) ? currentUser.avatar : avatarPlaceholder;
+  console.log("Current User Avatar:", avatar);
   const username = currentUser?.name || "User Avatar";
   console.log("Current User:", currentUser);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+
+  
 
   return (
     <header className="header">
@@ -63,7 +74,7 @@ function Header({
             <div className="header__user-container">
               <Link to="/profile" className="header__link">
               <p className="header__userName">{username}</p>
-              {currentUser.avatar ? (
+              {isValidUrl(currentUser?.avatar) ? (
             <img className="header__avatar" src={avatar} alt={username} />
           ) : (
             <div className="header__placeholder">

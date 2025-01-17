@@ -15,7 +15,9 @@ const SideBar = ({ handleLogOut, changeCurrentUserData }) => {
     <div className="sideBar">
       <div className="sideBar__userInfo">
       {currentUser?.avatar? (
-          <img className="sideBar__avatar" src={avatar} alt={username} />
+          <img className="sideBar__avatar" src={avatar} alt={username} onError={(e) => {
+            e.target.src = avatarPlaceholder; 
+          }}/>
         ) : (
           <div className="sideBar__avatar-placeholder">
             { initialsPlaceholder(username || "User")} 
