@@ -15,6 +15,9 @@ function Header({
   handleAddClick,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
+
+  const avatar = currentUser?.avatar || avatar;
+  const username = currentUser?.name || "User Avatar";
   console.log("Current User:", currentUser);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -60,11 +63,11 @@ function Header({
 
             <div className="header__user-container">
               <Link to="/profile" className="header__link">
-              {currentUser.avatarUrl ? (
-            <img className="header__avatar" src={currentUser.avatar} alt={currentUser.name} />
+              {currentUser.avatar ? (
+            <img className="header__avatar" src={avatar} alt={username} />
           ) : (
             <div className="header__placeholder">
-              {initialsPlaceholder (currentUser?.name)} 
+              {initialsPlaceholder (username)} 
             </div>
           )}
               </Link>

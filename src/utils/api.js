@@ -41,15 +41,15 @@ const removeItem = (_id) => {
   });
 };
 
-const updateUserData = (username, avatarUrl,setCurrentUser,setActiveModal) => {
-  console.log("Updating user data:", username, avatarUrl);
+const updateUserData = (username, avatar,setCurrentUser,setActiveModal) => {
+  console.log("Updating user data:", username, avatar);
   const token = localStorage.getItem("jwt");   
   if (!token) {
     console.error("JWT token is missing or invalid.");
     return;
   }
 
-  if (!username || !avatarUrl) {
+  if (!username || !avatar) {
     console.error("Invalid input: Username or avatar URL is missing or empty.");
     return;
   }
@@ -59,7 +59,7 @@ const updateUserData = (username, avatarUrl,setCurrentUser,setActiveModal) => {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`,
     },
-    body: JSON.stringify({ name: username, avatar: avatarUrl }),
+    body: JSON.stringify({ name: username,  avatar  }),
   })
     .then((res) => {
       if (!res.ok) {

@@ -80,7 +80,7 @@ function App() {
     setActiveModal("add-garment");
   };
 
-  const changeCurrentUserData = (username, avatarUrl) => {
+  const changeCurrentUserData = (username, avatar) => {
     setActiveModal("Edit-profile");
     console.log("clicked");
    
@@ -176,8 +176,8 @@ function App() {
     console.log("User logged out successfully.");
   };
 
-  const updateUserSubmit  = (username, avatarUrl) => {
-    updateUserData(username, avatarUrl)  
+  const updateUserSubmit  = (username, avatarl) => {
+    updateUserData(username, avatar)  
       .then((data) => {
         setCurrentUser(data); 
         setActiveModal("");     
@@ -214,7 +214,7 @@ function App() {
     setIsLoading(true);
 
     auth;
-    register(values.name, values.avatarUrl, values.email, values.password)
+    register(values.name, values.avatar, values.email, values.password)
       .then(() => {
         console.log("Registration successful, signing in...");
         return auth.authorize(values.email, values.password);

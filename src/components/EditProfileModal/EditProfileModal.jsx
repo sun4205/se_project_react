@@ -15,12 +15,12 @@ const EditProfileModal = ({
 }) => {
   const { values, handleChange } = useForm({
     username: currentUser?.username || "",
-    avatarUrl: currentUser?.avatarUrl || "",
+    avatar: currentUser?.avatar || "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateUserData(values.username, values.avatarUrl,setCurrentUser,setActiveModal);
+    updateUserData(values.username, values.avatar,setCurrentUser,setActiveModal);
   };
   
   const modalRef = useRef(null);
@@ -50,14 +50,14 @@ const EditProfileModal = ({
         />
       </label>
 
-      <label htmlFor="avatarUrl" className="modal__label">
+      <label htmlFor="avatar" className="modal__label">
         Avatar 
         <input
           type="text"
-          id="avatarUrl"
-          name="avatarUrl"
+          id="avatar"
+          name="avatar"
           placeholder="Avatar"
-          value={values.avatarUrl}
+          value={values.avatar}
           onChange={handleChange}
           className="modal__input"
         />
