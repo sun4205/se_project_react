@@ -6,6 +6,7 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
+import { initialsPlaceholder } from "../../utils/inicialPlaceHolder";
 
 function Header({
   openRegisterModal,
@@ -59,24 +60,15 @@ function Header({
 
             <div className="header__user-container">
               <Link to="/profile" className="header__link">
-                <p className="header__userName">
-                  {currentUser?.name || "Guest"}
-                </p>
+              {currentUser.avatarUrl ? (
+            <img className="header__avatar" src={currentUser.avatar} alt={currentUser.name} />
+          ) : (
+            <div className="header__placeholder">
+              {initialsPlaceholder (currentUser?.name)} 
+            </div>
+          )}
               </Link>
-              <Link to="/profile" className="header__link">
-                <img
-                  className="header__avatar"
-                  src={currentUser.avatarUrl || avatar}
-                  alt={currentUser.name}
-                />
-              </Link>
-              {/* <button
-              onClick={handleLogout}
-              type="button"
-              className="header__add-clothes-btn"
-            >
-              Sign Out
-            </button> */}
+             
             </div>
           </>
         )}

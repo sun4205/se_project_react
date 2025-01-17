@@ -3,6 +3,7 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 import { defaultClothingItems } from "../../utils/constants";
 import "./Profile.css";
 
+
 const Profile = ({ onCardLike, onCardClick, currentUser, clothingItems, handleAddClick, changeCurrentUserData, handleLogOut}) => {
 
   
