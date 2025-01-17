@@ -41,9 +41,18 @@ const removeItem = (_id) => {
   });
 };
 
-const updateUserData = (username, avatarUrl) => {
+const updateUserData = (username, avatarUrl,setCurrentUser,setActiveModal) => {
   console.log("Updating user data:", username, avatarUrl);
-  const token = localStorage.getItem("jwt"); 
+  const token = localStorage.getItem("jwt");   
+  if (!token) {
+    console.error("JWT token is missing or invalid.");
+    return;
+  }
+
+  if (!username || !avatarUrl) {
+    console.error("Invalid input: Username or avatar URL is missing or empty.");
+    return;
+  }
  return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
@@ -54,13 +63,17 @@ const updateUserData = (username, avatarUrl) => {
   })
     .then((res) => {
       if (!res.ok) {
-        throw new Error(`Error: ${res.status}`);
+        throw new Error(`Error ${res.status}: ${error.message || "Bad Request"}`);
       }
       return res.json();
     })
     .then((data) => {
-      setCurrentUser(data); 
-      setActiveModal(""); 
+      if (setCurrentUser) {
+        setCurrentUser(data); 
+      }
+      if (setActiveModal) {
+        setActiveModal(""); 
+      }
     })
     .catch((error) => console.error("Failed to update user data:", error));
 };
@@ -93,4 +106,4 @@ const removeCardLike = (id, token) => {
 
 };
 
-export { getItems, addItem, removeItem, updateUserData,addCardLike, removeCardLike };
+export { getItems, addItem, removeItem,addCardLike,updateUserData, removeCardLike };

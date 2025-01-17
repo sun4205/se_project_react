@@ -27,7 +27,7 @@ import { setToken, getToken, removeToken } from "../../utils/token";
 import {
   getItems,
   addItem,
-  updateUserData,
+  updateUserData,  
   addCardLike,
   removeCardLike,
   removeItem,
@@ -166,12 +166,23 @@ function App() {
     getUserInformation(jwt);
   }, []);
 
+ 
+
   const handleLogOut = () => {
     console.log("Log Out button clicked.");
     setIsLoggedIn(false);
     setCurrentUser(null);
     navigate("/");
     console.log("User logged out successfully.");
+  };
+
+  const updateUserSubmit  = (username, avatarUrl) => {
+    updateUserData(username, avatarUrl)  
+      .then((data) => {
+        setCurrentUser(data); 
+        setActiveModal("");     
+      })
+      .catch((error) => console.error("Failed to update user:", error));
   };
 
   const handleCardLike = ({ id, isLiked }) => {
@@ -324,7 +335,10 @@ function App() {
             closeActiveModal={closeActiveModal}
             buttonText="Save changes"
             currentUser={currentUser}
-            updateUserData={updateUserData}          
+            setCurrentUser={setCurrentUser}
+            updateUserData={updateUserData}
+            updateUserSubmit={updateUserSubmit} 
+            setActiveModal={setActiveModal}         
             
           />
 

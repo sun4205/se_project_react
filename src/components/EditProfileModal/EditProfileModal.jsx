@@ -9,7 +9,9 @@ const EditProfileModal = ({
   buttonText,
   currentUser,
   updateUserData,
- 
+  setCurrentUser,
+  setActiveModal,
+  updateUserSubmit
 }) => {
   const { values, handleChange } = useForm({
     username: currentUser?.username || "",
@@ -18,7 +20,7 @@ const EditProfileModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateUserData(values.username, values.avatarUrl);
+    updateUserData(values.username, values.avatarUrl,setCurrentUser,setActiveModal);
   };
   
   const modalRef = useRef(null);
