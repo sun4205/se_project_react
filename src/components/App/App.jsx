@@ -173,6 +173,7 @@ function App() {
     setIsLoggedIn(false);
     setCurrentUser(null);
     navigate("/");
+    localStorage.removeItem("jwt");
     console.log("User logged out successfully.");
   };
 
@@ -213,6 +214,7 @@ function App() {
     console.log("handleRegisterSubmit called with values:", values);
     setIsLoading(true);
 
+ 
     auth;
     register(values.name, values.avatar, values.email, values.password)
       .then(() => {

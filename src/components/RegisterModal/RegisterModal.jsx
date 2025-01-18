@@ -87,7 +87,7 @@ const RegisterModal = ({
           id="avatarURL" 
           name="avatar"
           placeholder="Avatar URL"
-          value={values.avatarURL}
+          value={values.avatar}
           onChange={handleChange}
         />
       </label>
