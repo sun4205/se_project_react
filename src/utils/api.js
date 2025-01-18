@@ -59,7 +59,7 @@ const updateUserData = (username, avatar,setCurrentUser,setActiveModal) => {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`,
     },
-    body: JSON.stringify({ name: username,  avatar  }),
+    body: JSON.stringify({ name: username, avatar: avatar || ""}),
   })
     .then((res) => {
       if (!res.ok) {

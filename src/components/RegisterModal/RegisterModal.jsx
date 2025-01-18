@@ -15,7 +15,7 @@ const RegisterModal = ({
     email: "",
     password: "",
     name: "",
-    avatarURL: "", 
+    avatar: "", 
   });
 
   const modalRef = useRef(null);
@@ -85,7 +85,7 @@ const RegisterModal = ({
           type="text"
           className="modal__input"
           id="avatarURL" 
-          name="avatarURL"
+          name="avatar"
           placeholder="Avatar URL"
           value={values.avatarURL}
           onChange={handleChange}

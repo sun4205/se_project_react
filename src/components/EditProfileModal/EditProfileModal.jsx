@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
 import useEscapeKey from "../../utils/useEscapeKey";
+import { useImperativeHandle } from "react";
 
 const EditProfileModal = ({
   activeModal,
@@ -31,7 +32,7 @@ const isValidUrl = (url) => {
       console.warn("Invalid or empty avatar URL. Skipping avatar update.");
       values.avatar = ""; 
     }
-    updateUserData(values.username, values.avatar,setCurrentUser,setActiveModal);
+    updateUserSubmit(values.username, values.avatar,setCurrentUser,setActiveModal);
   };
   
   const modalRef = useRef(null);

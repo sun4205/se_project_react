@@ -176,10 +176,10 @@ function App() {
     console.log("User logged out successfully.");
   };
 
-  const updateUserSubmit  = (username, avatarl) => {
-    updateUserData(username, avatar)  
-      .then((data) => {
-        setCurrentUser(data); 
+  const updateUserSubmit  = (username, avatar, setCurrentUser, setActiveModal) => {
+    updateUserData(username, avatar, setCurrentUser, setActiveModal)  
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser); 
         setActiveModal("");     
       })
       .catch((error) => console.error("Failed to update user:", error));
