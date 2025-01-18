@@ -14,16 +14,8 @@ function Header({
   handleAddClick,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
-  // const isValidUrl = (url) => {
-  //   try {
-  //     new URL(url);
-  //     return true;
-  //   } catch {
-  //     return false;
-  //   }
-  // };
 
-  const avatar = (currentUser?.avatar) ? currentUser.avatar : avatarPlaceholder;
+  const avatar = currentUser?.avatar ? currentUser.avatar : avatarPlaceholder;
   console.log("Current User Avatar:", avatar);
   const username = currentUser?.name || "User Avatar";
   console.log("Current User:", currentUser);
@@ -31,8 +23,6 @@ function Header({
     month: "long",
     day: "numeric",
   });
-
-  
 
   return (
     <header className="header">
@@ -71,26 +61,19 @@ function Header({
               +Add clothes
             </button>
 
-             <div className="header__user-container">
+            <div className="header__user-container">
               <Link to="/profile" className="header__link">
-              <p className="header__userName">{username}</p>
+                <p className="header__userName">{username}</p>
               </Link>
-              
-              {(currentUser?.avatar) ? (
-            <img className="header__avatar" src={avatar} alt={username} />
-          ) : (
-            <div className="header__placeholder">
-              {initialsPlaceholder (username)} 
-            </div>
-          )}
-              
-             
-            </div> 
-            
 
-        
-      
-            
+              {currentUser?.avatar ? (
+                <img className="header__avatar" src={avatar} alt={username} />
+              ) : (
+                <div className="header__placeholder">
+                  {initialsPlaceholder(username)}
+                </div>
+              )}
+            </div>
           </>
         )}
       </div>

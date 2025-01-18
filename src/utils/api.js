@@ -41,7 +41,7 @@ const removeItem = (_id) => {
   });
 };
 
-const updateUserData = (username, avatar,setCurrentUser,setActiveModal) => {
+const updateUserData = (username, avatar) => {
   console.log("Updating user data:", username, avatar);
   const token = localStorage.getItem("jwt");   
   if (!token) {

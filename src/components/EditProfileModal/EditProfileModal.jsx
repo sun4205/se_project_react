@@ -15,23 +15,16 @@ const EditProfileModal = ({
   updateUserSubmit
 }) => {
   const { values, handleChange } = useForm({
-    username: currentUser?.username || "",
+    username: currentUser?.name || "",
     avatar: currentUser?.avatar || "",
   });
-const isValidUrl = (url) => {
-  try {
-    new URL(url);
-    return true;
-  } catch {
-    return false;
-  }
-};
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!values.avatar || !isValidUrl(values.avatar)) {
-      console.warn("Invalid or empty avatar URL. Skipping avatar update.");
-      values.avatar = ""; 
-    }
+    if (!values.avatar) {
+    console.warn("Empty avatar URL. Skipping avatar update.");
+    values.avatar = ""; 
+  }
     updateUserSubmit(values.username, values.avatar,setCurrentUser,setActiveModal);
   };
   
