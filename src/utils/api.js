@@ -67,14 +67,7 @@ const updateUserData = (username, avatar,setCurrentUser,setActiveModal) => {
       }
       return res.json();
     })
-    .then((data) => {
-      if (setCurrentUser) {
-        setCurrentUser(data); 
-      }
-      if (setActiveModal) {
-        setActiveModal(""); 
-      }
-    })
+    
     .catch((error) => console.error("Failed to update user data:", error));
 };
 
