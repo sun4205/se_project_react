@@ -71,6 +71,9 @@ const updateUserData = (username, avatar) => {
     .catch((error) => console.error("Failed to update user data:", error));
 };
 
+
+
+
 const addCardLike = (id, token) => {
   console.log("Card ID:", id);
   return fetch(`${baseUrl}/items/${id}/likes`, {

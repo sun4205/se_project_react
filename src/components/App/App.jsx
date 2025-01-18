@@ -27,7 +27,7 @@ import { setToken, getToken, removeToken } from "../../utils/token";
 import {
   getItems,
   addItem,
-  updateUserData,  
+  updateUserData,
   addCardLike,
   removeCardLike,
   removeItem,
@@ -51,9 +51,11 @@ function App() {
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [isRemoveItemModalOpen, setIsRemoveItemModalOpen] = useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    avatar: "",
+  });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({ username: "", avatar: "" });
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -83,7 +85,6 @@ function App() {
   const changeCurrentUserData = (username, avatar) => {
     setActiveModal("Edit-profile");
     console.log("clicked");
-   
   };
 
   const openRegisterModal = () => {
@@ -166,8 +167,6 @@ function App() {
     getUserInformation(jwt);
   }, []);
 
- 
-
   const handleLogOut = () => {
     console.log("Log Out button clicked.");
     setIsLoggedIn(false);
@@ -177,11 +176,11 @@ function App() {
     console.log("User logged out successfully.");
   };
 
-  const updateUserSubmit  = (name, avatar, setCurrentUser, setActiveModal) => {
-    updateUserData(name, avatar, setCurrentUser, setActiveModal)  
+  const updateUserSubmit = (name, avatar, setCurrentUser, setActiveModal) => {
+    updateUserData(name, avatar, setCurrentUser, setActiveModal)
       .then((updatedUser) => {
-        setCurrentUser(updatedUser); 
-        setActiveModal("");     
+        setCurrentUser(updatedUser);
+        setActiveModal("");
       })
       .catch((error) => console.error("Failed to update user:", error));
   };
@@ -214,24 +213,17 @@ function App() {
     console.log("handleRegisterSubmit called with values:", values);
     setIsLoading(true);
 
- 
-    auth;
     register(values.name, values.avatar, values.email, values.password)
       .then(() => {
         console.log("Registration successful, signing in...");
         return auth.authorize(values.email, values.password);
       })
-      .then((userData) => {
-        console.log("User logged in successfully:", userData);
-        setCurrentUser(userData);
-        closeActiveModal();
+      .then(() => {
+        handleLogin({ username: values.email, password: values.password });
       })
-      .catch((err) => console.error("Error during registration or login:", err))
-      .finally(() => {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
-      });
+      .catch((err) =>
+        console.error("Error during registration or login:", err)
+      );
   };
 
   const handleDeleteConfirm = () => {
@@ -339,9 +331,8 @@ function App() {
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
             updateUserData={updateUserData}
-            updateUserSubmit={updateUserSubmit} 
-            setActiveModal={setActiveModal}         
-            
+            updateUserSubmit={updateUserSubmit}
+            setActiveModal={setActiveModal}
           />
 
           <AddItemModal
