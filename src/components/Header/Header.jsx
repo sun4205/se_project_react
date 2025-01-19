@@ -1,11 +1,9 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import avatarPlaceholder from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
-import { initialsPlaceholder } from "../../utils/inicialPlaceHolder";
 import Avatar from "../Avatar/Avatar";
 
 function Header({
@@ -65,7 +63,7 @@ function Header({
               </Link>
 
               <Avatar avatar={currentUser?.avatar} name={username} />
-              </div>
+            </div>
           </>
         )}
       </div>

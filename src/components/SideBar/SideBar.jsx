@@ -2,7 +2,6 @@ import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import avatarPlaceholder from "../../assets/avatar.svg";
 import "./SideBar.css";
-import { initialsPlaceholder } from "../../utils/inicialPlaceHolder";
 import Avatar from "../Avatar/Avatar";
 
 const SideBar = ({ handleLogOut, changeCurrentUserData }) => {
@@ -10,11 +9,14 @@ const SideBar = ({ handleLogOut, changeCurrentUserData }) => {
 
   const avatar = currentUser?.avatar || avatarPlaceholder;
   const username = currentUser?.name || "User";
-  
+
   return (
     <div className="sideBar">
       <div className="sideBar__userInfo">
-      <Avatar avatar={currentUser?.avatar} name={currentUser?.name || "User"} />
+        <Avatar
+          avatar={currentUser?.avatar}
+          name={currentUser?.name || "User"}
+        />
         <p className="sideBar__userName">{username || "User Avatar"}</p>
       </div>
       <div className="sideBar__editProfile">

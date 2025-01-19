@@ -37,6 +37,7 @@ import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 import SideBar from "../SideBar/SideBar";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import Avatar from "../Avatar/Avatar";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -176,7 +177,12 @@ function App() {
     console.log("User logged out successfully.");
   };
 
-  const updateUserSubmit = (username, avatar, setCurrentUser, setActiveModal) => {
+  const updateUserSubmit = (
+    username,
+    avatar,
+    setCurrentUser,
+    setActiveModal
+  ) => {
     updateUserData(username, avatar, setCurrentUser, setActiveModal)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);

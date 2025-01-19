@@ -2,8 +2,6 @@ import React, { useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
 import useEscapeKey from "../../utils/useEscapeKey";
-import { useImperativeHandle } from "react";
-import Avatar from "../Avatar/Avatar";
 
 const EditProfileModal = ({
   activeModal,
@@ -45,7 +43,6 @@ const EditProfileModal = ({
       customClass="edit-profile-modal"
       modalRef={modalRef}
     >
-      
       <label htmlFor="username" className="modal__label">
         Name
         <input
