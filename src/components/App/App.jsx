@@ -176,8 +176,8 @@ function App() {
     console.log("User logged out successfully.");
   };
 
-  const updateUserSubmit = (name, avatar, setCurrentUser, setActiveModal) => {
-    updateUserData(name, avatar, setCurrentUser, setActiveModal)
+  const updateUserSubmit = (username, avatar, setCurrentUser, setActiveModal) => {
+    updateUserData(username, avatar, setCurrentUser, setActiveModal)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
         setActiveModal("");

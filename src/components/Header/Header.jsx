@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 import { initialsPlaceholder } from "../../utils/inicialPlaceHolder";
+import Avatar from "../Avatar/Avatar";
 
 function Header({
   openRegisterModal,
@@ -15,10 +16,7 @@ function Header({
 }) {
   const { currentUser } = useContext(CurrentUserContext);
 
-  const avatar = currentUser?.avatar ? currentUser.avatar : avatarPlaceholder;
-  console.log("Current User Avatar:", avatar);
-  const username = currentUser?.name || "User Avatar";
-  console.log("Current User:", currentUser);
+  const username = currentUser?.name || "Anonymous";
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -66,14 +64,8 @@ function Header({
                 <p className="header__userName">{username}</p>
               </Link>
 
-              {currentUser?.avatar ? (
-                <img className="header__avatar" src={avatar} alt={username} />
-              ) : (
-                <div className="header__placeholder">
-                  {initialsPlaceholder(username)}
-                </div>
-              )}
-            </div>
+              <Avatar avatar={currentUser?.avatar} name={username} />
+              </div>
           </>
         )}
       </div>

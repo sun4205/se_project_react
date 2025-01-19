@@ -3,26 +3,18 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import avatarPlaceholder from "../../assets/avatar.svg";
 import "./SideBar.css";
 import { initialsPlaceholder } from "../../utils/inicialPlaceHolder";
+import Avatar from "../Avatar/Avatar";
 
 const SideBar = ({ handleLogOut, changeCurrentUserData }) => {
   const { currentUser } = useContext(CurrentUserContext);
 
   const avatar = currentUser?.avatar || avatarPlaceholder;
-  const username = currentUser?.name || "User Avatar"
-  
+  const username = currentUser?.name || "User";
   
   return (
     <div className="sideBar">
       <div className="sideBar__userInfo">
-      {currentUser?.avatar? (
-          <img className="sideBar__avatar" src={avatar} alt={username} onError={(e) => {
-            e.target.src = avatarPlaceholder; 
-          }}/>
-        ) : (
-          <div className="sideBar__avatar-placeholder">
-            { initialsPlaceholder(username || "User")} 
-          </div>
-        )}
+      <Avatar avatar={currentUser?.avatar} name={currentUser?.name || "User"} />
         <p className="sideBar__userName">{username || "User Avatar"}</p>
       </div>
       <div className="sideBar__editProfile">

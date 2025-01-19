@@ -7,7 +7,7 @@
 .header__logo {
   margin-right: 24px;
 }
-
+/* 
 .header__placeholder{
   width: 40px; 
   height: 40px;
@@ -22,12 +22,12 @@
   text-align: center;
   align-items: center;
   justify-content: center;
-}
+} */
 
-.header__avatar{
+/* .header__avatar{
   width: 40px;
   height: 40px;
-}
+} */
 .header__date-and-location {
   margin: 0;
   font-weight: 700;

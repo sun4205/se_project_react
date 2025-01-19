@@ -3,6 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
 import useEscapeKey from "../../utils/useEscapeKey";
 import { useImperativeHandle } from "react";
+import Avatar from "../Avatar/Avatar";
 
 const EditProfileModal = ({
   activeModal,
@@ -12,7 +13,7 @@ const EditProfileModal = ({
   updateUserData,
   setCurrentUser,
   setActiveModal,
-  updateUserSubmit
+  updateUserSubmit,
 }) => {
   const { values, handleChange } = useForm({
     username: currentUser?.name || "",
@@ -21,13 +22,15 @@ const EditProfileModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!values.avatar) {
-    console.warn("Empty avatar URL. Skipping avatar update.");
-    values.avatar = ""; 
-  }
-    updateUserSubmit(values.username, values.avatar,setCurrentUser,setActiveModal);
+
+    updateUserSubmit(
+      values.username,
+      values.avatar,
+      setCurrentUser,
+      setActiveModal
+    );
   };
-  
+
   const modalRef = useRef(null);
   useEscapeKey(!!activeModal, closeActiveModal, modalRef);
   console.log("activeModal:", activeModal);
@@ -39,9 +42,10 @@ const EditProfileModal = ({
       activeModal={activeModal}
       handleCloseClick={closeActiveModal}
       onSubmit={handleSubmit}
-      customClass="edit-profile-modal" 
+      customClass="edit-profile-modal"
       modalRef={modalRef}
     >
+      
       <label htmlFor="username" className="modal__label">
         Name
         <input
@@ -56,7 +60,7 @@ const EditProfileModal = ({
       </label>
 
       <label htmlFor="avatar" className="modal__label">
-        Avatar 
+        Avatar
         <input
           type="text"
           id="avatar"
