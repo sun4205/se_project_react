@@ -30,7 +30,7 @@ const addItem = ({ name, weather, imageUrl }) => {
 };
 
 const removeItem = (_id) => {
-  const token = localStorage.getItem("jwt"); 
+  const token = localStorage.getItem("jwt");
   console.log("Deleting item with _id:", _id);
   return request(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
@@ -43,7 +43,7 @@ const removeItem = (_id) => {
 
 const updateUserData = (username, avatar) => {
   console.log("Updating user data:", username, avatar);
-  const token = localStorage.getItem("jwt");   
+  const token = localStorage.getItem("jwt");
   if (!token) {
     console.error("JWT token is missing or invalid.");
     return;
@@ -53,53 +53,56 @@ const updateUserData = (username, avatar) => {
     console.error("Invalid input: Username or avatar URL is missing or empty.");
     return;
   }
- return fetch(`${baseUrl}/users/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name: username, avatar: avatar || ""}),
+    body: JSON.stringify({ name: username, avatar: avatar || "" }),
   })
     .then((res) => {
       if (!res.ok) {
-        throw new Error(`Error ${res.status}: ${error.message || "Bad Request"}`);
+        throw new Error(
+          `Error ${res.status}: ${error.message || "Bad Request"}`
+        );
       }
       return res.json();
     })
-    
+
     .catch((error) => console.error("Failed to update user data:", error));
 };
-
-
-
 
 const addCardLike = (id, token) => {
   console.log("Card ID:", id);
   return fetch(`${baseUrl}/items/${id}/likes`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));
-
 };
 
 const removeCardLike = (id, token) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));
-
-
 };
 
-export { getItems, addItem, removeItem,addCardLike,updateUserData, removeCardLike };
+export {
+  getItems,
+  addItem,
+  removeItem,
+  addCardLike,
+  updateUserData,
+  removeCardLike,
+};

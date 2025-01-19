@@ -3,10 +3,17 @@ import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
 
-const ClothesSection = ({ onCardLike, onCardClick, clothingItems, handleAddClick,currentUser }) => {
-  const userItems = currentUser && currentUser._id
-    ? clothingItems.filter((item) => item.owner === currentUser._id)
-    : [];
+const ClothesSection = ({
+  onCardLike,
+  onCardClick,
+  clothingItems,
+  handleAddClick,
+  currentUser,
+}) => {
+  const userItems =
+    currentUser && currentUser._id
+      ? clothingItems.filter((item) => item.owner === currentUser._id)
+      : [];
   return (
     <div className="clothesSection">
       <section className="clothesSection__controls">
@@ -18,7 +25,12 @@ const ClothesSection = ({ onCardLike, onCardClick, clothingItems, handleAddClick
       <section className="clothesSection__lists">
         <ul className="cards__list">
           {userItems.map((item) => (
-            <ItemCard key={item._id} item={item} onCardLike={onCardLike} onCardClick={onCardClick} />
+            <ItemCard
+              key={item._id}
+              item={item}
+              onCardLike={onCardLike}
+              onCardClick={onCardClick}
+            />
           ))}
         </ul>
       </section>

@@ -1,5 +1,4 @@
-import sunny from "../../assets/day/sunny.svg";
-import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
+import { weatherOptions } from "../../utils/constants";
 import "./WeatherCard.css";
 
 function WeatherCard({

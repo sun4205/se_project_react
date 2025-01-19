@@ -3,19 +3,19 @@ import close from "../../assets/close_button.svg";
 import useEscapeKey from "../../utils/useEscapeKey";
 import { useRef } from "react";
 
-const RemoveItem = ({ activeModal, onClose, onConfirm, buttonText}) => {
-
+const RemoveItem = ({ activeModal, onClose, onConfirm, buttonText }) => {
   const modalRef = useRef(null);
   const closeActiveModal = () => {
     onClose();
   };
   useEscapeKey(!!activeModal, closeActiveModal, modalRef);
-  
+
   return (
     <div
       className={`modal modal__remove-item ${
         activeModal === "remove-item" && "modal_opened"
-      }`} ref={modalRef}
+      }`}
+      ref={modalRef}
     >
       <div className="modal__content modal__content-remove">
         <button onClick={onClose} type="button" className="modal__close">

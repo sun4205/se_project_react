@@ -1,7 +1,6 @@
 export const BASE_URL = "http://localhost:3001";
 
-export const register = (name, avatar, email, password ) => {
- 
+export const register = (name, avatar, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
@@ -39,4 +38,3 @@ export const getUserInfo = (token) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
 };
-

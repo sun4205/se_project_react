@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
 import useEscapeKey from "../../utils/useEscapeKey";
@@ -27,7 +27,7 @@ const AddItemModal = ({
   return (
     <ModalWithForm
       isOpen={activeModal === "add-garment"}
-      title="New garment"
+      title="Sign up"
       buttonText={buttonText}
       activeModal={activeModal}
       handleCloseClick={closeActiveModal}

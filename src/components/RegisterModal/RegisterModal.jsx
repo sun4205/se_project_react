@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
@@ -6,7 +5,7 @@ import useEscapeKey from "../../utils/useEscapeKey";
 
 const RegisterModal = ({
   activeModal,
-  closeActiveModal, 
+  closeActiveModal,
   handleRegisterSubmit,
   buttonText = "sign up",
   setActiveModal,
@@ -15,7 +14,7 @@ const RegisterModal = ({
     email: "",
     password: "",
     name: "",
-    avatar: "", 
+    avatar: "",
   });
 
   const modalRef = useRef(null);
@@ -30,12 +29,12 @@ const RegisterModal = ({
 
   return (
     <ModalWithForm
-      isOpen={activeModal === "register"} 
-      title="Sign up" 
+      isOpen={activeModal === "register"}
+      title="Sign up"
       buttonText={buttonText}
       activeModal={activeModal}
-      secondaryButtonText="or Log In" 
-      onSecondaryClick={() => setActiveModal("login")} 
+      secondaryButtonText="or Log In"
+      onSecondaryClick={() => setActiveModal("login")}
       handleCloseClick={closeActiveModal}
       onSubmit={handleSubmit}
       modalRef={modalRef}
@@ -43,7 +42,7 @@ const RegisterModal = ({
       <label htmlFor="email" className="modal__label">
         Email*
         <input
-          type="email" 
+          type="email"
           className="modal__input"
           id="email"
           name="email"
@@ -56,7 +55,7 @@ const RegisterModal = ({
       <label htmlFor="password" className="modal__label">
         Password*
         <input
-          type="password" 
+          type="password"
           className="modal__input"
           id="password"
           name="password"
@@ -84,7 +83,7 @@ const RegisterModal = ({
         <input
           type="text"
           className="modal__input"
-          id="avatarURL" 
+          id="avatarURL"
           name="avatar"
           placeholder="Avatar URL"
           value={values.avatar}

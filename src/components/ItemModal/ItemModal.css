@@ -60,11 +60,11 @@
 }
 
 .modal__delete {
-border: none;
-font-weight: 700;
-font-size: 20px;
-line-height: 24px;
-color:#FF4D00;
-margin-right: 32px;
-background-color: none;
+  border: none;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ff4d00;
+  margin-right: 32px;
+  background-color: none;
 }

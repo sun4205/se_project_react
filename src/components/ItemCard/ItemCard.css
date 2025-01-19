@@ -10,15 +10,15 @@
 }
 .card__content {
   display: flex;
-  gap:4px;
-  top:10px;
+  gap: 4px;
+  top: 10px;
   width: 100%;
   position: absolute;
   align-items: center;
   justify-content: center;
 }
 
-.card__name {  
+.card__name {
   top: 15px;
   margin: 0;
   width: 73px;
@@ -41,19 +41,18 @@
 }
 
 .card__like-btn {
-  background-image: url("/src/assets/Likebutton.svg");  
+  background-image: url("/src/assets/Likebutton.svg");
   background-size: cover;
   background-repeat: no-repeat;
   width: 18px;
   height: 15px;
   border: none;
-  cursor: pointer;  
+  cursor: pointer;
   top: 15px;
   margin-left: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
- 
 }
 
 .card__like-btn.liked {

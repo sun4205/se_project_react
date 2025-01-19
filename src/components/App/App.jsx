@@ -1,16 +1,8 @@
-import React, { useEffect, useState, useRef, act } from "react";
-import {
-  Routes,
-  Route,
-  Navigate,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import "./App.css";
-import WeatherCard from "../WeatherCard/WeatherCard";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { coordinates, APIkey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";

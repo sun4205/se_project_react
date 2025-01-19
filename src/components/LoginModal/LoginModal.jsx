@@ -1,21 +1,18 @@
-
 import React, { useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
 import useEscapeKey from "../../utils/useEscapeKey";
 
-
 const LoginModal = ({
   activeModal,
-  closeActiveModal,  
-  buttonText ="Login",
+  closeActiveModal,
+  buttonText = "Login",
   handleLogin,
   setActiveModal,
 }) => {
   const { values, handleChange } = useForm({
     email: "",
     password: "",
-    
   });
 
   const modalRef = useRef(null);
@@ -25,7 +22,7 @@ const LoginModal = ({
     e.preventDefault();
     console.log("Form submitted with values:", values);
     handleLogin({
-      username: values.email, 
+      username: values.email,
       password: values.password,
     });
     closeActiveModal();
@@ -33,10 +30,10 @@ const LoginModal = ({
 
   return (
     <ModalWithForm
-      isOpen={activeModal === "login"} 
-      title="Login" 
+      isOpen={activeModal === "login"}
+      title="Login"
       buttonText={buttonText}
-      secondaryButtonText="or Sign Up" 
+      secondaryButtonText="or Sign Up"
       onSecondaryClick={() => setActiveModal("register")}
       handleCloseClick={closeActiveModal}
       activeModal={activeModal}
@@ -46,7 +43,7 @@ const LoginModal = ({
       <label htmlFor="email" className="modal__label">
         Email
         <input
-          type="email" 
+          type="email"
           className="modal__input"
           id="email"
           name="email"
@@ -59,7 +56,7 @@ const LoginModal = ({
       <label htmlFor="password" className="modal__label">
         Password
         <input
-          type="password" 
+          type="password"
           className="modal__input"
           id="password"
           name="password"
@@ -68,8 +65,6 @@ const LoginModal = ({
           onChange={handleChange}
         />
       </label>
-
-      
     </ModalWithForm>
   );
 };
