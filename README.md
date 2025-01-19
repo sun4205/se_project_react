@@ -18,4 +18,10 @@ Create and style components, and retrieve weather data using an API. The app dis
 
 - This is a screenshot. ![Screenshot](./src/assets/Screenshot.png)
 
-- project on GitHub Pages [here](https://github.com/sun4205/se_project_react.git)
+## Frontend
+
+- frontend on GitHub Page [here](https://github.com/sun4205/se_project_react.git)
+
+## Backend
+
+- backend on GitHub page [here](https://github.com/sun4205/se_project_express.git).
