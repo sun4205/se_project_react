@@ -1,6 +1,5 @@
 import "./ItemModal.css";
 import itemModalclose from "../../assets/itemModalClose.svg";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useRef } from "react";
 import useEscapeKey from "../../utils/useEscapeKey";
 

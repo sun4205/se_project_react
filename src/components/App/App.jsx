@@ -24,12 +24,11 @@ import {
   removeCardLike,
   removeItem,
 } from "../../utils/api";
-import { register, getUserInfo } from "../../utils/auth";
+import { register } from "../../utils/auth";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
-import SideBar from "../SideBar/SideBar";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import Avatar from "../Avatar/Avatar";
+
 
 function App() {
   const [weatherData, setWeatherData] = useState({
