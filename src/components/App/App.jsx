@@ -150,7 +150,7 @@ function App() {
 
     if (!jwt) {
       setCurrentUser(null);
-      setIsLoggedIn(false);
+      setIsLoggedIn(false);      
       return;
     }
 
@@ -161,24 +161,27 @@ function App() {
           setIsLoggedIn(true);
         } else {
           setCurrentUser(null);
-          setIsLoggedIn(false);
+          setIsLoggedIn(false);               
           localStorage.removeItem("jwt");
+          localStorage.addItem("jwt");
         }
       })
       .catch((err) => {
         console.error("Error fetching user information:", err);
         setCurrentUser(null);
-        setIsLoggedIn(false);
+        setIsLoggedIn(false);        
         localStorage.removeItem("jwt");
+        localStorage.addItem("jwt");
       });
   }, []);
 
   const handleLogOut = () => {
     console.log("Log Out button clicked.");
     setIsLoggedIn(false);
-    setCurrentUser(null);
+    setCurrentUser(null);    
     navigate("/");
-    localStorage.removeItem("jwt");
+    localStorage.removeItem("jwt");  
+    localStorage.addItem("jwt");  
     console.log("User logged out successfully.");
   };
 
