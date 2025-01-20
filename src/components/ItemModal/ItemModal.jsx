@@ -1,5 +1,5 @@
 import "./ItemModal.css";
-import itemModalclose from "../../assets/itemModalClose.svg";
+import close from "../../assets/close_button.svg";
 import { useRef } from "react";
 import useEscapeKey from "../../utils/useEscapeKey";
 
@@ -28,7 +28,7 @@ function ItemModal({
     >
       <div className="modal__content modal__content_type_image">
         <button onClick={onClose} type="button" className="modal__close">
-          <img src={itemModalclose} alt="close_button" />
+          <img src={close} alt="close_button" />
         </button>
         <img src={card.imageUrl} alt={card.name} className="modal__image" />
 
