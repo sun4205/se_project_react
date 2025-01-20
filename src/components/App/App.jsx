@@ -29,7 +29,6 @@ import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
-
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -147,13 +146,31 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("Current User:", currentUser);
     const jwt = getToken();
 
     if (!jwt) {
+      setCurrentUser(null);
+      setIsLoggedIn(false);
       return;
     }
-    getUserInformation(jwt);
+
+    getUserInformation(jwt)
+      .then((userData) => {
+        if (userData) {
+          setCurrentUser(userData);
+          setIsLoggedIn(true);
+        } else {
+          setCurrentUser(null);
+          setIsLoggedIn(false);
+          localStorage.removeItem("jwt");
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching user information:", err);
+        setCurrentUser(null);
+        setIsLoggedIn(false);
+        localStorage.removeItem("jwt");
+      });
   }, []);
 
   const handleLogOut = () => {
