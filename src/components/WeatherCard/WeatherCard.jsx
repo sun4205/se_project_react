@@ -37,6 +37,7 @@ function WeatherCard({
   console.log("Selected weatherOption:", weatherOption);
   console.log("Image URL:", weatherOption?.url);
   return (
+    
     <section className="weather-card">
       <p className="weather-card__temp">
         {" "}

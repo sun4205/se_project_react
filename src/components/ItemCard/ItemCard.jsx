@@ -33,11 +33,13 @@ function ItemCard({ item, onCardClick, onCardLike }) {
     <li className="card">
       <div className="card__content">
         <h2 className="card__name">{item.name}</h2>
+        {currentUser && (
         <button
           id={`like-btn-${item._id}`}
           onClick={handleLike}
           className={itemLikeButtonClassName}
         ></button>
+        )}
       </div>
 
       <img

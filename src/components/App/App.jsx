@@ -43,10 +43,7 @@ function App() {
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [isRemoveItemModalOpen, setIsRemoveItemModalOpen] = useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [currentUser, setCurrentUser] = useState({
-    name: "",
-    avatar: "",
-  });
+  const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
@@ -141,7 +138,7 @@ function App() {
         if (data.token) {
           setToken(data.token);
           getUserInformation(data.token).then(() => {
-            const redirectPath = location.state?.from?.pathname || "";
+            const redirectPath = location.state?.from?.pathname || "/";
             navigate(redirectPath);
           });
         }
