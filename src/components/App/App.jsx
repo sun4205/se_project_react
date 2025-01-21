@@ -28,6 +28,7 @@ import { register } from "../../utils/auth";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -136,6 +137,7 @@ function App() {
       .then((data) => {
         if (data.token) {
           setToken(data.token);
+          setIsLoggedIn(true);
           getUserInformation(data.token).then(() => {
             const redirectPath = location.state?.from?.pathname || "/";
             navigate(redirectPath);
@@ -147,40 +149,41 @@ function App() {
 
   useEffect(() => {
     const jwt = getToken();
+    console.log("JWT from storage:", jwt);
 
     if (!jwt) {
+      console.log("No JWT found. Logging out.");
       setCurrentUser(null);
-      setIsLoggedIn(false);      
+      setIsLoggedIn(false);
       return;
     }
 
     getUserInformation(jwt)
       .then((userData) => {
         if (userData) {
+          console.log("User data:", userData);
           setCurrentUser(userData);
           setIsLoggedIn(true);
         } else {
+          console.log("Invalid user data. Logging out.");
           setCurrentUser(null);
-          setIsLoggedIn(false);               
+          setIsLoggedIn(false);
           localStorage.removeItem("jwt");
-          localStorage.addItem("jwt");
         }
       })
       .catch((err) => {
         console.error("Error fetching user information:", err);
         setCurrentUser(null);
-        setIsLoggedIn(false);        
-        localStorage.removeItem("jwt");        
+        setIsLoggedIn(false);
+        localStorage.removeItem("jwt");
       });
   }, []);
 
   const handleLogOut = () => {
     console.log("Log Out button clicked.");
     setIsLoggedIn(false);
-    setCurrentUser(null);    
+    setCurrentUser(null);
     navigate("/");
-    localStorage.removeItem("jwt");  
-    localStorage.addItem("jwt");  
     console.log("User logged out successfully.");
   };
 
@@ -302,17 +305,20 @@ function App() {
               <Route
                 path="/"
                 element={
+                  // <ProtectedRoute isLoggedIn={isLoggedIn}>
                   <Main
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
                   />
+                  //  </ProtectedRoute>
                 }
               />
               <Route
                 path="/profile"
                 element={
+                  // <ProtectedRoute isLoggedIn={isLoggedIn}>
                   <Profile
                     onCardLike={handleCardLike}
                     onCardClick={handleCardClick}
@@ -323,6 +329,7 @@ function App() {
                     updateUserData={updateUserData}
                     currentUser={currentUser}
                   />
+                  //  </ProtectedRoute>
                 }
               />
             </Routes>
