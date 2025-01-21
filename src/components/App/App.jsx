@@ -150,14 +150,14 @@ function App() {
   useEffect(() => {
     const jwt = getToken();
     console.log("JWT from storage:", jwt);
-  
+
     if (!jwt) {
       console.log("No JWT found. Logging out.");
       setCurrentUser(null);
       setIsLoggedIn(false);
       return;
     }
-  
+
     getUserInformation(jwt);
   }, []);
 
@@ -287,31 +287,29 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
                   <Main
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
                   />
-                    </ProtectedRoute>
                 }
               />
               <Route
                 path="/profile"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <Profile
-                    onCardLike={handleCardLike}
-                    onCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    handleAddClick={handleAddClick}
-                    changeCurrentUserData={changeCurrentUserData}
-                    handleLogOut={handleLogOut}
-                    updateUserData={updateUserData}
-                    currentUser={currentUser}
-                  />
-                    </ProtectedRoute>
+                    <Profile
+                      onCardLike={handleCardLike}
+                      onCardClick={handleCardClick}
+                      clothingItems={clothingItems}
+                      handleAddClick={handleAddClick}
+                      changeCurrentUserData={changeCurrentUserData}
+                      handleLogOut={handleLogOut}
+                      updateUserData={updateUserData}
+                      currentUser={currentUser}
+                    />
+                  </ProtectedRoute>
                 }
               />
             </Routes>
