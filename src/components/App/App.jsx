@@ -170,8 +170,7 @@ function App() {
         console.error("Error fetching user information:", err);
         setCurrentUser(null);
         setIsLoggedIn(false);        
-        localStorage.removeItem("jwt");
-        localStorage.addItem("jwt");
+        localStorage.removeItem("jwt");        
       });
   }, []);
 
