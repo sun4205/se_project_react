@@ -150,35 +150,17 @@ function App() {
   useEffect(() => {
     const jwt = getToken();
     console.log("JWT from storage:", jwt);
-
+  
     if (!jwt) {
       console.log("No JWT found. Logging out.");
       setCurrentUser(null);
       setIsLoggedIn(false);
       return;
     }
-
-    getUserInformation(jwt)
-      .then((userData) => {
-        if (userData) {
-          console.log("User data:", userData);
-          setCurrentUser(userData);
-          setIsLoggedIn(true);
-        } else {
-          console.log("Invalid user data. Logging out.");
-          setCurrentUser(null);
-          setIsLoggedIn(false);
-          localStorage.removeItem("jwt");
-        }
-      })
-      .catch((err) => {
-        console.error("Error fetching user information:", err);
-        setCurrentUser(null);
-        setIsLoggedIn(false);
-        localStorage.removeItem("jwt");
-      });
+  
+    getUserInformation(jwt);
   }, []);
-
+  
   const handleLogOut = () => {
     console.log("Log Out button clicked.");
     setIsLoggedIn(false);
