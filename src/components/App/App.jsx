@@ -160,7 +160,7 @@ function App() {
   
     getUserInformation(jwt);
   }, []);
-  
+
   const handleLogOut = () => {
     console.log("Log Out button clicked.");
     setIsLoggedIn(false);
@@ -287,20 +287,20 @@ function App() {
               <Route
                 path="/"
                 element={
-                  // <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
                   <Main
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
                   />
-                  //  </ProtectedRoute>
+                    </ProtectedRoute>
                 }
               />
               <Route
                 path="/profile"
                 element={
-                  // <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
                   <Profile
                     onCardLike={handleCardLike}
                     onCardClick={handleCardClick}
@@ -311,7 +311,7 @@ function App() {
                     updateUserData={updateUserData}
                     currentUser={currentUser}
                   />
-                  //  </ProtectedRoute>
+                    </ProtectedRoute>
                 }
               />
             </Routes>
