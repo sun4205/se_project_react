@@ -29,7 +29,7 @@ function ModalWithForm({
       <div className="modal__content">
         <h2 className="modal__title">{title}</h2>
         <button
-          onClick={handleCloseClick}
+          onClick={closeActiveModal}
           type="button"
           className="modal__close"
         >

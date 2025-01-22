@@ -21,7 +21,6 @@ const RegisterModal = ({
     e.preventDefault();
     console.log("Form submitted with values:", values);
     handleRegisterSubmit(values);
-    closeActiveModal();
   };
 
   return (
@@ -31,10 +30,10 @@ const RegisterModal = ({
       buttonText={buttonText}
       activeModal={activeModal}
       secondaryButtonText="or Log In"
-      onSecondaryClick={() => setActiveModal("login")}
-      handleCloseClick={closeActiveModal}
+      onSecondaryClick={() => setActiveModal("login")}      
       onSubmit={handleSubmit}
       modalRef={modalRef}
+      closeActiveModal={closeActiveModal}
     >
       <label htmlFor="email" className="modal__label">
         Email*

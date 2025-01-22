@@ -25,7 +25,7 @@ const LoginModal = ({
       username: values.email,
       password: values.password,
     });
-    closeActiveModal();
+    
   };
 
   return (
@@ -34,11 +34,11 @@ const LoginModal = ({
       title="Login"
       buttonText={buttonText}
       secondaryButtonText="or Sign Up"
-      onSecondaryClick={() => setActiveModal("register")}
-      handleCloseClick={closeActiveModal}
+      onSecondaryClick={() => setActiveModal("register")}     
       activeModal={activeModal}
       onSubmit={handleSubmit}
       modalRef={modalRef}
+      closeActiveModal={closeActiveModal}
     >
       <label htmlFor="email" className="modal__label">
         Email

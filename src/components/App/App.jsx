@@ -141,6 +141,7 @@ function App() {
           getUserInformation(data.token).then(() => {
             const redirectPath = location.state?.from?.pathname || "/";
             navigate(redirectPath);
+            closeActiveModal();
           });
         }
       })
@@ -219,6 +220,7 @@ function App() {
       })
       .then(() => {
         handleLogin({ username: values.email, password: values.password });
+        closeActiveModal();
       })
       .catch((err) =>
         console.error("Error during registration or login:", err)
