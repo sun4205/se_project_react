@@ -307,8 +307,7 @@ function App() {
                       handleAddClick={handleAddClick}
                       changeCurrentUserData={changeCurrentUserData}
                       handleLogOut={handleLogOut}
-                      updateUserData={updateUserData}
-                      currentUser={currentUser}
+                      updateUserData={updateUserData}                      
                     />
                   </ProtectedRoute>
                 }
@@ -328,8 +327,7 @@ function App() {
           <EditProfileModal
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
-            buttonText="Save changes"
-            currentUser={currentUser}
+            buttonText="Save changes"            
             setCurrentUser={setCurrentUser}
             updateUserData={updateUserData}
             updateUserSubmit={updateUserSubmit}
@@ -347,8 +345,7 @@ function App() {
             card={selectedCard}
             onClose={closeActiveModal}
             handleDeleteClick={handleDeleteClick}
-            onCardLike={handleCardLike}
-            currentUser={currentUser}
+            onCardLike={handleCardLike}            
           />
           <RemoveItem
             activeModal={isRemoveItemModalOpen ? "remove-item" : ""}
