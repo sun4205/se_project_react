@@ -89,9 +89,9 @@ function App() {
   const closeActiveModal = () => {
     setActiveModal("");
   };
-  const modalRef = useRef(null);
+  // const modalRef = useRef(null);
 
-  useEscapeKey(!!activeModal, closeActiveModal, modalRef);
+  // useEscapeKey(!!activeModal, closeActiveModal, modalRef);
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
@@ -163,7 +163,7 @@ function App() {
 
   const handleLogOut = () => {
     console.log("Log Out button clicked.");
-    removeToken();
+    removeToken()
     setIsLoggedIn(false);
     setCurrentUser(null);
     navigate("/");
@@ -174,12 +174,12 @@ function App() {
     username,
     avatar,
     setCurrentUser,
-    setActiveModal
+    closeActiveModal
   ) => {
-    updateUserData(username, avatar, setCurrentUser, setActiveModal)
+    updateUserData(username, avatar, setCurrentUser, closeActiveModal)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
-        setActiveModal("");
+        closeActiveModal();
       })
       .catch((error) => console.error("Failed to update user:", error));
   };

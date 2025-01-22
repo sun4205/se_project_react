@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
-import useEscapeKey from "../../utils/useEscapeKey";
 
 const RegisterModal = ({
   activeModal,
@@ -9,6 +8,7 @@ const RegisterModal = ({
   handleRegisterSubmit,
   buttonText = "sign up",
   setActiveModal,
+  modalRef,
 }) => {
   const { values, handleChange } = useForm({
     email: "",
@@ -16,9 +16,6 @@ const RegisterModal = ({
     name: "",
     avatar: "",
   });
-
-  const modalRef = useRef(null);
-  useEscapeKey(!!activeModal, closeActiveModal, modalRef);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -1,16 +1,14 @@
-import React, { useRef } from "react";
+import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
-import useEscapeKey from "../../utils/useEscapeKey";
 
 const EditProfileModal = ({
   activeModal,
   closeActiveModal,
   buttonText,
   currentUser,
-  updateUserData,
   setCurrentUser,
-  setActiveModal,
+  modalRef,
   updateUserSubmit,
 }) => {
   const { values, handleChange } = useForm({
@@ -25,20 +23,17 @@ const EditProfileModal = ({
       values.username,
       values.avatar,
       setCurrentUser,
-      setActiveModal
+      closeActiveModal
     );
   };
 
-  const modalRef = useRef(null);
-  useEscapeKey(!!activeModal, closeActiveModal, modalRef);
-  console.log("activeModal:", activeModal);
   return (
     <ModalWithForm
       isOpen={activeModal === "Edit-profile"}
       title="Edit Profile"
       buttonText={buttonText}
       activeModal={activeModal}
-      handleCloseClick={closeActiveModal}
+      closeActiveModal={closeActiveModal}
       onSubmit={handleSubmit}
       customClass="edit-profile-modal"
       modalRef={modalRef}

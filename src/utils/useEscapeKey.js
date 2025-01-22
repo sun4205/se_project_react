@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
-const useEscapeKey = (isActive, onClose, modalRef) => {
+const useEscapeKey = (isActive, closeActiveModal, modalRef) => {
   useEffect(() => {
     if (!isActive) return;
 
     const handleEscClose = (e) => {
       if (e.key === "Escape") {
-        onClose();
+        closeActiveModal();
       }
     };
 
@@ -16,7 +16,7 @@ const useEscapeKey = (isActive, onClose, modalRef) => {
 
       if (modalRef?.current && e.target === modalRef.current) {
         console.log("Overlay clicked, closing modal...");
-        onClose();
+        closeActiveModal();
       } else {
         console.log("Clicked inside the modal content, ignoring...");
       }
@@ -29,7 +29,7 @@ const useEscapeKey = (isActive, onClose, modalRef) => {
       document.removeEventListener("keydown", handleEscClose);
       document.removeEventListener("click", handleOverlayClick);
     };
-  }, [isActive, onClose, modalRef]);
+  }, [isActive, closeActiveModal, modalRef]);
 };
 
 export default useEscapeKey;

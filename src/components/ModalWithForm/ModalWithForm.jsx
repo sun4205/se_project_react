@@ -1,7 +1,11 @@
+import React, { useRef } from "react";
 import close from "../../assets/close_button.svg";
+import useEscapeKey from "../../utils/useEscapeKey";
 import "./ModalWithForm.css";
 
 function ModalWithForm({
+  activeModal,
+  closeActiveModal,
   children,
   buttonText,
   title,
@@ -10,10 +14,13 @@ function ModalWithForm({
   isOpen,
   handleCloseClick,
   onSubmit,
-  modalRef,
   customClass,
 }) {
   console.log("Modal Button Text:", buttonText);
+
+  const modalRef = useRef(null);
+  useEscapeKey(!!activeModal, closeActiveModal, modalRef);
+
   return (
     <div
       className={`modal  ${isOpen ? "modal_opened" : ""} ${customClass || ""}`}

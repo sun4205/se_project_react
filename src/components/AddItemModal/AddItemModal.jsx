@@ -1,13 +1,14 @@
 import React, { useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
-import useEscapeKey from "../../utils/useEscapeKey";
+// import useEscapeKey from "../../utils/useEscapeKey";
 
 const AddItemModal = ({
   activeModal,
   closeActiveModal,
   handleAddItemSubmit,
   buttonText,
+  modalRef,
 }) => {
   const { values, handleChange } = useForm({
     name: "",
@@ -15,8 +16,8 @@ const AddItemModal = ({
     weather: "",
   });
 
-  const modalRef = useRef(null);
-  useEscapeKey(!!activeModal, closeActiveModal, modalRef);
+  // const modalRef = useRef(null);
+  // useEscapeKey(!!activeModal, closeActiveModal, modalRef);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +31,7 @@ const AddItemModal = ({
       title="Sign up"
       buttonText={buttonText}
       activeModal={activeModal}
-      handleCloseClick={closeActiveModal}
+      closeActiveModal={closeActiveModal}
       onSubmit={handleSubmit}
       modalRef={modalRef}
     >
