@@ -1,7 +1,5 @@
 import "./ItemModal.css";
 import close from "../../assets/close_button.svg";
-// import { useRef } from "react";
-// import useEscapeKey from "../../utils/useEscapeKey";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function ItemModal({
@@ -13,20 +11,14 @@ function ItemModal({
   modalRef,
   closeActiveModal,
 }) {
-  // const modalRef = useRef(null);
-  // const closeActiveModal = () => {
-  //   onClose();
-  // };
+  
 
   const isOwn = card?.owner === currentUser?._id;
 
-  // useEscapeKey(!!activeModal, closeActiveModal, modalRef);
+  
   return (
-    <ModalWithForm modalRef={modalRef}>
-      <div
-        className={`modal ${activeModal === "preview" && "modal_opened"}`}
-        ref={modalRef}
-      >
+    <ModalWithForm modalRef={modalRef} closeActiveModal={closeActiveModal}>
+      <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
         <div className="modal__content modal__content_type_image">
           <button onClick={onClose} type="button" className="modal__close">
             <img src={close} alt="close_button" />
