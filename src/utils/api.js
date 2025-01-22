@@ -61,14 +61,12 @@ const updateUserData = (username, avatar) => {
   })
     .then((res) => {
       if (!res.ok) {
-        throw new Error(
-          `Error ${res.status}: ${error.message || "Bad Request"}`
-        );
+        throw new Error("Failed to update user data.");
       }
       return res.json();
     })
 
-    .catch((error) => console.error("Failed to update user data:", error));
+    .catch((error) => console.error(error.message));
 };
 
 const addCardLike = (id, token) => {

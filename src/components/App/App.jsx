@@ -163,6 +163,7 @@ function App() {
 
   const handleLogOut = () => {
     console.log("Log Out button clicked.");
+    removeToken();
     setIsLoggedIn(false);
     setCurrentUser(null);
     navigate("/");

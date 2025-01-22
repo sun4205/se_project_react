@@ -16,10 +16,7 @@ function ItemModal({
   };
 
   const isOwn = card?.owner === currentUser?._id;
-  const itemDeleteButtonClassName = `modal__delete ${
-    isOwn ? "" : "modal__delete_hidden"
-  }`;
-
+  
   useEscapeKey(!!activeModal, closeActiveModal, modalRef);
   return (
     <div
