@@ -101,4 +101,5 @@ export {
   addCardLike,
   updateUserData,
   removeCardLike,
+  checkResponse,
 };
