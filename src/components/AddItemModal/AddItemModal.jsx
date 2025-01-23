@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
-// import useEscapeKey from "../../utils/useEscapeKey";
+
 
 const AddItemModal = ({
   activeModal,
@@ -16,9 +16,7 @@ const AddItemModal = ({
     weather: "",
   });
 
-  // const modalRef = useRef(null);
-  // useEscapeKey(!!activeModal, closeActiveModal, modalRef);
-
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted with values:", values);

@@ -306,7 +306,7 @@ function App() {
                       handleAddClick={handleAddClick}
                       changeCurrentUserData={changeCurrentUserData}
                       handleLogOut={handleLogOut}
-                      updateUserData={updateUserData}                      
+                      updateUserData={updateUserData}                                          
                     />
                   </ProtectedRoute>
                 }

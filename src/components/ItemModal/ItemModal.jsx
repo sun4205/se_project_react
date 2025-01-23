@@ -2,19 +2,21 @@ import "./ItemModal.css";
 import close from "../../assets/close_button.svg";
 import { useRef } from "react";
 import useEscapeKey from "../../utils/useEscapeKey";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({
   activeModal,
   onClose,
   card,
   handleDeleteClick,
-  currentUser,
   
 }) {
   const modalRef = useRef(null);
   const closeActiveModal = () => {
     onClose();
   };
+  const {currentUser} = useContext(CurrentUserContext);
 
   const isOwn = card?.owner === currentUser?._id;
   

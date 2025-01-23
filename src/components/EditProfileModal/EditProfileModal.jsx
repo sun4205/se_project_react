@@ -39,7 +39,7 @@ const EditProfileModal = ({
 
   return (
     <ModalWithForm
-      isOpen={isOpen}
+    isOpen={activeModal === "Edit-profile"}
       title="Edit Profile"
       buttonText={buttonText}
       activeModal={activeModal}
