@@ -89,10 +89,7 @@ function App() {
   const closeActiveModal = () => {
     setActiveModal("");
   };
-  // const modalRef = useRef(null);
-
-  // useEscapeKey(!!activeModal, closeActiveModal, modalRef);
-
+  
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -327,6 +324,7 @@ function App() {
             buttonText={isLoading ? "Register..." : "Sign up"}
           />
           <EditProfileModal
+            isOpen={activeModal}
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             buttonText="Save changes"            

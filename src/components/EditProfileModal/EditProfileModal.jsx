@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
 
 const EditProfileModal = ({
-  activeModal,
+  isOpen,
   closeActiveModal,
+  activeModal,
   buttonText,
   currentUser,
   setCurrentUser,
   modalRef,
   updateUserSubmit,
 }) => {
-  const { values, handleChange } = useForm({
-    username: currentUser?.name || "",
-    avatar: currentUser?.avatar || "",
+  const { values, handleChange, setValues } = useForm({
+    username: "",
+    avatar: "",
   });
 
   const handleSubmit = (e) => {
@@ -27,9 +28,18 @@ const EditProfileModal = ({
     );
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      setValues({
+        username: currentUser?.name,
+        avatar: currentUser?.avatar,
+      });
+    }
+  }, [isOpen, currentUser, setValues]);
+
   return (
     <ModalWithForm
-      isOpen={activeModal === "Edit-profile"}
+      isOpen={isOpen}
       title="Edit Profile"
       buttonText={buttonText}
       activeModal={activeModal}
