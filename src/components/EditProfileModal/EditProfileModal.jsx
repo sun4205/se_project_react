@@ -34,14 +34,14 @@ const EditProfileModal = ({
   };
 
   useEffect(() => {
-    if (isOpen) {
-      console.log("Setting values for current user:", currentUser);
+    if (isOpen && currentUser) {
+      console.log("Current User:", currentUser);
       setValues({
         username: currentUser?.name,
         avatar: currentUser?.avatar,
       });
     }
-  }, [isOpen, currentUser, setValues]);
+  }, [isOpen, currentUser]);
 
   return (
     <ModalWithForm

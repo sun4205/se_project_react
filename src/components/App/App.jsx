@@ -184,6 +184,7 @@ function App() {
       .catch((error) => console.error("Failed to update user:", error));
   };
 
+
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
 
