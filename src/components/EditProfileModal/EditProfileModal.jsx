@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
 
 const EditProfileModal = ({
   isOpen,
   closeActiveModal,
   activeModal,
-  buttonText,
-  currentUser,
+  buttonText,  
   setCurrentUser,
   modalRef,
   updateUserSubmit,
@@ -16,6 +18,9 @@ const EditProfileModal = ({
     username: "",
     avatar: "",
   });
+
+  const { currentUser } = useContext(CurrentUserContext);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +35,7 @@ const EditProfileModal = ({
 
   useEffect(() => {
     if (isOpen) {
+      console.log("Setting values for current user:", currentUser);
       setValues({
         username: currentUser?.name,
         avatar: currentUser?.avatar,
@@ -39,7 +45,7 @@ const EditProfileModal = ({
 
   return (
     <ModalWithForm
-    isOpen={activeModal === "Edit-profile"}
+      isOpen={activeModal === "Edit-profile"}
       title="Edit Profile"
       buttonText={buttonText}
       activeModal={activeModal}

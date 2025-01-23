@@ -95,23 +95,25 @@ function App() {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
   };
 
+  function handleSubmit(request) {
+    setIsLoading(true);
+    request()
+      .then(closeActiveModal)
+
+      .catch(console.error)
+
+      .finally(() => setIsLoading(false));
+  }
+
   const handleAddItemSubmit = (item) => {
     console.log("handleAddItemSubmit called with item:", item);
-    setIsLoading(true);
-    console.log("Button Text:", isLoading ? "Saving..." : "Save");
-
-    addItem(item)
-      .then((newItem) => {
+    handleSubmit(() =>
+      addItem(item).then((newItem) => {
         console.log("Current clothingItems before update:", clothingItems);
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
       })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
-      });
+    );
   };
 
   function getUserInformation(token) {
@@ -226,27 +228,22 @@ function App() {
 
   const handleDeleteConfirm = () => {
     if (selectedCard) {
-      setIsLoading(true);
-      removeItem(selectedCard._id)
-        .then(() => {
-          setClothingItems((prevItems) =>
-            prevItems.filter((item) => item._id !== selectedCard._id)
-          );
+      handleSubmit(() =>
+        removeItem(selectedCard._id)
+          .then(() => {
+            setClothingItems((prevItems) =>
+              prevItems.filter((item) => item._id !== selectedCard._id)
+            );
 
-          setDeleteConfirmation(false);
-          closeRemoveItemModal();
-          closeActiveModal();
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          console.error(error);
-          setIsLoading(false);
-        })
-        .finally(() => {
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 500);
-        });
+            setDeleteConfirmation(false);
+            closeRemoveItemModal();
+            closeActiveModal();
+          })
+
+          .catch((error) => {
+            console.error(error);
+          })
+      );
     }
   };
 
