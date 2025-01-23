@@ -9,7 +9,7 @@ export const register = (name, avatar, email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then(checkResponse)
+  }).then(checkResponse);
 };
 
 export const authorize = (email, password) => {
@@ -17,10 +17,10 @@ export const authorize = (email, password) => {
     method: "POST",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",    
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then(checkResponse)
+  }).then(checkResponse);
 };
 
 export const getUserInfo = (token) => {
@@ -31,5 +31,5 @@ export const getUserInfo = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse)
+  }).then(checkResponse);
 };

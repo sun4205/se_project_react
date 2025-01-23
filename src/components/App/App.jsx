@@ -89,7 +89,7 @@ function App() {
   const closeActiveModal = () => {
     setActiveModal("");
   };
-  
+
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -161,7 +161,7 @@ function App() {
 
   const handleLogOut = () => {
     console.log("Log Out button clicked.");
-    removeToken()
+    removeToken();
     setIsLoggedIn(false);
     setCurrentUser(null);
     navigate("/");
@@ -306,7 +306,7 @@ function App() {
                       handleAddClick={handleAddClick}
                       changeCurrentUserData={changeCurrentUserData}
                       handleLogOut={handleLogOut}
-                      updateUserData={updateUserData}                                          
+                      updateUserData={updateUserData}
                     />
                   </ProtectedRoute>
                 }
@@ -327,7 +327,7 @@ function App() {
             isOpen={activeModal}
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
-            buttonText="Save changes"            
+            buttonText="Save changes"
             setCurrentUser={setCurrentUser}
             updateUserData={updateUserData}
             updateUserSubmit={updateUserSubmit}
@@ -345,7 +345,7 @@ function App() {
             card={selectedCard}
             onClose={closeActiveModal}
             handleDeleteClick={handleDeleteClick}
-            onCardLike={handleCardLike}            
+            onCardLike={handleCardLike}
           />
           <RemoveItem
             activeModal={isRemoveItemModalOpen ? "remove-item" : ""}

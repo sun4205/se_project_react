@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
 
-
 const LoginModal = ({
   activeModal,
   closeActiveModal,
@@ -16,8 +15,6 @@ const LoginModal = ({
     password: "",
   });
 
- 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted with values:", values);
@@ -25,15 +22,14 @@ const LoginModal = ({
       username: values.email,
       password: values.password,
     });
-    
   };
 
   return (
     <ModalWithForm
       isOpen={activeModal === "login"}
       title="Login"
-      buttonText={buttonText}      
-      onSecondaryClick={() => setActiveModal("login")}     
+      buttonText={buttonText}
+      onSecondaryClick={() => setActiveModal("login")}
       activeModal={activeModal}
       onSubmit={handleSubmit}
       modalRef={modalRef}

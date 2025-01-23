@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../utils/useForm";
 
-
 const AddItemModal = ({
   activeModal,
   closeActiveModal,
@@ -16,7 +15,6 @@ const AddItemModal = ({
     weather: "",
   });
 
- 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted with values:", values);

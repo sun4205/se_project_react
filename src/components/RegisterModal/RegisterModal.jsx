@@ -28,8 +28,8 @@ const RegisterModal = ({
       isOpen={activeModal === "register"}
       title="Sign up"
       buttonText={buttonText}
-      activeModal={activeModal}      
-      onSecondaryClick={() => setActiveModal("register")}      
+      activeModal={activeModal}
+      onSecondaryClick={() => setActiveModal("register")}
       onSubmit={handleSubmit}
       modalRef={modalRef}
       closeActiveModal={closeActiveModal}

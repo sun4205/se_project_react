@@ -5,24 +5,17 @@ import useEscapeKey from "../../utils/useEscapeKey";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function ItemModal({
-  activeModal,
-  onClose,
-  card,
-  handleDeleteClick,
-  
-}) {
+function ItemModal({ activeModal, onClose, card, handleDeleteClick }) {
   const modalRef = useRef(null);
   const closeActiveModal = () => {
     onClose();
   };
-  const {currentUser} = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   const isOwn = card?.owner === currentUser?._id;
-  
+
   useEscapeKey(!!activeModal, closeActiveModal, modalRef);
   return (
-    
     <div
       className={`modal ${activeModal === "preview" && "modal_opened"}`}
       ref={modalRef}
@@ -52,7 +45,6 @@ function ItemModal({
         </div>
       </div>
     </div>
-    
   );
 }
 
