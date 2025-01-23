@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
-
 const RegisterModal = ({
   activeModal,
   closeActiveModal,
@@ -16,26 +15,25 @@ const RegisterModal = ({
     name: "",
     avatar: "",
   });
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted with values:", values);
     handleRegisterSubmit(values);
   };
-
   return (
     <ModalWithForm
       isOpen={activeModal === "register"}
       title="Sign up"
       buttonText={buttonText}
       activeModal={activeModal}
-      onSecondaryClick={() => setActiveModal("register")}
+      onSecondaryClick={() => setActiveModal("login")}
       onSubmit={handleSubmit}
       modalRef={modalRef}
       closeActiveModal={closeActiveModal}
     >
-      <label htmlFor="email" className="modal__label">
-        Email*
+
+      <label  className="modal__label">
+      Email*
         <input
           type="email"
           className="modal__input"
@@ -46,8 +44,7 @@ const RegisterModal = ({
           onChange={handleChange}
         />
       </label>
-
-      <label htmlFor="password" className="modal__label">
+      <label className="modal__label">
         Password*
         <input
           type="password"
@@ -59,8 +56,7 @@ const RegisterModal = ({
           onChange={handleChange}
         />
       </label>
-
-      <label htmlFor="name" className="modal__label">
+      <label  className="modal__label">
         Name
         <input
           type="text"
@@ -72,8 +68,7 @@ const RegisterModal = ({
           onChange={handleChange}
         />
       </label>
-
-      <label htmlFor="avatarURL" className="modal__label">
+      <label  className="modal__label">
         Avatar URL
         <input
           type="text"
@@ -88,5 +83,4 @@ const RegisterModal = ({
     </ModalWithForm>
   );
 };
-
 export default RegisterModal;

@@ -61,7 +61,7 @@ const EditProfileModal = ({
           id="username"
           name="username"
           placeholder={currentUser?.name}
-          value={values.name}
+          value={values.username}
           onChange={handleChange}
           className="modal__input"
         />
