@@ -11,7 +11,7 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import RemoveItem from "../RemoveItem/RemoveItem";
-import useEscapeKey from "../../utils/useEscapeKey";
+import useEscapeKey from "../../hooks/useEscapeKey";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -95,7 +95,7 @@ function App() {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
   };
 
-  function handleSubmit(request) {
+  function asyncSubmit(request) {
     setIsLoading(true);
     request()
       .then(closeActiveModal)
@@ -107,7 +107,7 @@ function App() {
 
   const handleAddItemSubmit = (item) => {
     console.log("handleAddItemSubmit called with item:", item);
-    handleSubmit(() =>
+    asyncSubmit(() =>
       addItem(item).then((newItem) => {
         console.log("Current clothingItems before update:", clothingItems);
         setClothingItems([newItem, ...clothingItems]);
@@ -228,7 +228,7 @@ function App() {
 
   const handleDeleteConfirm = () => {
     if (selectedCard) {
-      handleSubmit(() =>
+      asyncSubmit(() =>
         removeItem(selectedCard._id)
           .then(() => {
             setClothingItems((prevItems) =>

@@ -1,6 +1,6 @@
 import "./RemoveItem.css";
 import close from "../../assets/close_button.svg";
-import useEscapeKey from "../../utils/useEscapeKey";
+import useEscapeKey from "../../hooks/useEscapeKey";
 import { useRef } from "react";
 
 const RemoveItem = ({ activeModal, onClose, onConfirm, buttonText }) => {

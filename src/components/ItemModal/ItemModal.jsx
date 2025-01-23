@@ -1,7 +1,7 @@
 import "./ItemModal.css";
 import close from "../../assets/close_button.svg";
 import { useRef } from "react";
-import useEscapeKey from "../../utils/useEscapeKey";
+import useEscapeKey from "../../hooks/useEscapeKey";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 

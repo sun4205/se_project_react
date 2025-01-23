@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useForm } from "../../utils/useForm";
+import { useForm } from "../../hooks/useForm";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 

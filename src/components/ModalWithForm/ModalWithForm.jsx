@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import close from "../../assets/close_button.svg";
-import useEscapeKey from "../../utils/useEscapeKey";
+import useEscapeKey from "../../hooks/useEscapeKey";
 import "./ModalWithForm.css";
 
 function ModalWithForm({

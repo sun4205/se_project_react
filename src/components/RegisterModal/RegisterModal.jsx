@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useForm } from "../../utils/useForm";
+import { useForm } from "../../hooks/useForm";
 
 const RegisterModal = ({
   activeModal,
