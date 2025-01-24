@@ -208,21 +208,13 @@ function App() {
   };
 
   const handleRegisterSubmit = (values) => {
-    console.log("handleRegisterSubmit called with values:", values);
-    setIsLoading(true);
-
-    register(values.name, values.avatar, values.email, values.password)
-      .then(() => {
-        console.log("Registration successful, signing in...");
-        return auth.authorize(values.email, values.password);
-      })
-      .then(() => {
-        handleLogin({ username: values.email, password: values.password });
-        closeActiveModal();
-      })
-      .catch((err) =>
-        console.error("Error during registration or login:", err)
-      );
+    asyncSubmit(() =>
+      register(values.name, values.avatar, values.email, values.password).then(
+        () => {
+          handleLogin({ username: values.email, password: values.password });
+        }
+      )
+    );
   };
 
   const handleDeleteConfirm = () => {
