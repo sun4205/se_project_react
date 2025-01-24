@@ -26,14 +26,14 @@ const RegisterModal = ({
       title="Sign up"
       buttonText={buttonText}
       activeModal={activeModal}
+      secondaryButtonText="or Log In"
       onSecondaryClick={() => setActiveModal("login")}
       onSubmit={handleSubmit}
       modalRef={modalRef}
       closeActiveModal={closeActiveModal}
     >
-
-      <label  className="modal__label">
-      Email*
+      <label className="modal__label">
+        Email*
         <input
           type="email"
           className="modal__input"
@@ -56,7 +56,7 @@ const RegisterModal = ({
           onChange={handleChange}
         />
       </label>
-      <label  className="modal__label">
+      <label className="modal__label">
         Name
         <input
           type="text"
@@ -68,7 +68,7 @@ const RegisterModal = ({
           onChange={handleChange}
         />
       </label>
-      <label  className="modal__label">
+      <label className="modal__label">
         Avatar URL
         <input
           type="text"

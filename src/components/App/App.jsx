@@ -111,7 +111,6 @@ function App() {
       addItem(item).then((newItem) => {
         console.log("Current clothingItems before update:", clothingItems);
         setClothingItems([newItem, ...clothingItems]);
-        closeActiveModal();
       })
     );
   };
@@ -184,7 +183,6 @@ function App() {
       .catch((error) => console.error("Failed to update user:", error));
   };
 
-
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
 
@@ -230,20 +228,14 @@ function App() {
   const handleDeleteConfirm = () => {
     if (selectedCard) {
       asyncSubmit(() =>
-        removeItem(selectedCard._id)
-          .then(() => {
-            setClothingItems((prevItems) =>
-              prevItems.filter((item) => item._id !== selectedCard._id)
-            );
+        removeItem(selectedCard._id).then(() => {
+          setClothingItems((prevItems) =>
+            prevItems.filter((item) => item._id !== selectedCard._id)
+          );
 
-            setDeleteConfirmation(false);
-            closeRemoveItemModal();
-            closeActiveModal();
-          })
-
-          .catch((error) => {
-            console.error(error);
-          })
+          setDeleteConfirmation(false);
+          closeRemoveItemModal();
+        })
       );
     }
   };

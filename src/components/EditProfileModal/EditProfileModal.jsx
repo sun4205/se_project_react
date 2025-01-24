@@ -54,7 +54,7 @@ const EditProfileModal = ({
       customClass="edit-profile-modal"
       modalRef={modalRef}
     >
-      <label htmlFor="username" className="modal__label">
+      <label  className="modal__label">
         Name
         <input
           type="text"
@@ -67,7 +67,7 @@ const EditProfileModal = ({
         />
       </label>
 
-      <label htmlFor="avatar" className="modal__label">
+      <label  className="modal__label">
         Avatar
         <input
           type="text"

@@ -29,6 +29,7 @@ const LoginModal = ({
       isOpen={activeModal === "login"}
       title="Login"
       buttonText={buttonText}
+      secondaryButtonText="or Sign up"
       onSecondaryClick={() => setActiveModal("register")}
       activeModal={activeModal}
       onSubmit={handleSubmit}
