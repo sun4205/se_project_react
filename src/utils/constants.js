@@ -126,3 +126,7 @@ export const coordinates = {
 };
 
 export const APIkey = "eda908ec9f2da810ec05fb6d5b43bc18";
+
+export const baseUrl = process.env.NODE_ENV === "production" 
+  ? "https://api.wtwr.barratella.com"
+  : "http://localhost:3001";
