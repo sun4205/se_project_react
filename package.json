@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://wtwr.barratella.com",
+  "homepage": "https://fit24.jumpingcrab.comm",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
